@@ -4,3 +4,13 @@ HardwareShader PostProcess scene
 	Shader "shaders/Berserk.fp" 330
 	Uniform float timer
 }
+
+Skybox SATURN fliptop
+{
+	SATURN_N
+	SATURN_E
+	SATURN_S
+	SATURN_W
+	SATURN_T
+	SATURN_B
+}

@@ -1,5 +1,13 @@
 ********************************************
 *                                          *
+*                 Textures                 *
+*                                          *
+********************************************
+
+Saturn skybox made with SpaceEngine https://store.steampowered.com/app/314650/SpaceEngine/
+
+********************************************
+*                                          *
 *              Sound Effects               *
 *                                          *
 ********************************************
@@ -21,6 +29,8 @@ Battery Usage https://freesound.org/people/Jofae/sounds/367125/
 Mag-pulse firing sound https://freesound.org/people/michael_grinnell/sounds/512469/, original magpulse sfx
 Mag-pulse hit sound https://freesound.org/people/Snapper4298/sounds/180007/, original magpulse sfx
 Magnum Firing sound https://freesound.org/people/morganpurkis/sounds/369782/ mixed with original SS1 Magnum sound
+
+Ladder sounds from https://freesound.org/people/Eelke/sounds/462598/
 
 
 6dof code by dodopod, pulled from https://gitlab.com/dodopod/zscript-player-powers/

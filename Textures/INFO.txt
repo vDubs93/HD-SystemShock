@@ -1,0 +1,15 @@
+Information:
+Source: System Shock
+Count: ~330
+Palette: Truecolor PNGs
+Format: TX_ markers
+Anims/Switches: ZDoom compatible
+Description: Textures from System Shock
+
+Credits:
+Conversion: Ceeb
+Author: Looking Glass
+Submitted: Ceeb
+
+Description:
+Every texture from System Shock

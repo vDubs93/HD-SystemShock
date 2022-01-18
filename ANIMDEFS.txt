@@ -1,0 +1,100 @@
+texture CMP1_1 range CMP1_4 tics 2.5
+
+texture CMP2_1 range CMP2_4 rand 3.5 5
+
+texture CMP3_1 range CMP3_4 tics 4
+
+texture CMP4_1 range CMP4_4 tics 5 oscillate
+
+texture CMP5_1 range CMP5_5 rand 8 14
+
+texture TEXT_1 range TEXT_4 tics 2.75
+
+texture STAT1_1 range STAT1_6 tics 4 oscillate
+
+texture STAT2_1 range STAT2_4 tics 2.25
+
+texture PLN1_1 range PLN1_4 tics 2.5
+
+texture PLN2_1 range PLN2_4 tics 2.5
+
+texture PLN3_1 range PLN3_8 tics 2.5
+
+texture MOLECUL1 range MOLECUL8 tics 3.25
+
+texture FACE1_1 range FACE1_4 rand 5 10 //om nom nom nom
+
+texture FACE2_1 range FACE2_4 rand 5 10 //sepia nom nom nom
+
+texture LOGO_01 //BWAAHHHHHH
+pic 1 tics 2.5
+pic 2 tics 2.5
+pic 3 tics 2.5
+pic 4 tics 4
+pic 3 tics 2.5
+pic 2 tics 2.5
+pic 1 tics 2.5
+pic 5 tics 2.5
+pic 6 tics 2.5
+pic 7 tics 2.5
+pic 8 tics 4
+pic 7 tics 2.5
+pic 6 tics 2.5
+pic 5 tics 2.5
+pic 1 rand 10 20
+pic 12 tics 3.5
+pic 13 tics 3.5
+pic 14 tics 3.5
+pic 15 tics 3.5
+pic 16 tics 3.5
+pic 13 tics 3.5
+pic 14 tics 3.5
+pic 15 tics 3.5
+pic 16 tics 3.5
+pic 13 tics 3.5
+pic 14 tics 3.5
+pic 15 tics 3.5
+pic 16 tics 3.5
+pic 13 tics 3.5
+pic 14 tics 3.5
+pic 15 tics 3.5
+pic 16 tics 3.5
+pic 13 tics 3.5
+pic 14 tics 3.5
+pic 15 tics 3.5
+pic 16 tics 3.5
+pic 13 tics 3.5
+pic 12 rand 10 20
+pic 11 tics 2
+pic 10 tics 2
+pic 9 tics 2
+pic 8 tics 2
+pic 7 tics 2
+pic 6 tics 2
+pic 5 tics 2
+pic 1 rand 10 20
+
+texture GROWTH_1 range GROWTH_4 tics 8 oscillate
+
+animatedDoor Door4
+		opensound DS_EMPTY
+		closesound DS_EMPTY
+		pic Door4_0
+		pic Door4_1
+		pic Door4_2
+		pic Door4_3
+		pic Door4_4
+		pic Door4_5
+		pic Door4_6
+		pic Door4_7
+/*
+The LOCKX_X textures should be animated via an ACS script.
+The same goes for the screen breaking and shutting off
+animations. Not much else to say.
+
+Not sure why I put so much work into that LOGO_XX one since
+I doubt anyone will actually use it. Alas.
+
+Did this while critically bored from having no internet at
+home. D: --Ceeb
+*/

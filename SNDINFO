@@ -76,6 +76,11 @@ env/puzzleSolved 			PUZZSOLV
 env/puzzleButton 			PUZZBUTN
 plat/ss1move 				PLATMOVE
 
+$random env/ladder { Ladder1 Ladder2 Ladder3}
+Ladder1 LADDER1
+Ladder2 LADDER2
+Ladder3 LADDER3
+
 /**************************
  *         Doors          *
  **************************/
