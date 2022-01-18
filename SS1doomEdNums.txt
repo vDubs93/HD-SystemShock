@@ -1,0 +1,148 @@
+//Highest used: 19565
+doomednums
+{
+	//Weapons
+	19454 = SS1Pipe
+	19458 = SS1DartGun
+	19547 = SS1StunGun
+	19548 = ML41MiniPistol
+	19551 = SS1SparqBeam
+	19553 = SS1MagPulse
+	
+	
+	//Wall Switches
+	19455 = switch1
+	19456 = button1
+	19457 = lever1
+	19485 = bigbutton
+	19490 = button2
+	
+	//Puzzles
+	19540 = numPadPuzzle
+	
+	//Interactables
+	19483 = gravlift
+	19500 = SS1ladder
+	
+	//Ammo
+	19459 = NeedleDartClip
+	19462 = TranqDartClip
+	19535 = SS1FragGrenadeAmmo
+	19565 = SS1GasGrenadeAmmo
+	19549 = MPStandardMag
+	19550 = MPTeflonMag
+	
+	//Monsters
+	19460 = ServBot
+	19552 = HumanoidMutant
+	
+	//World Objects
+	19463 = rechargeStation
+	19482 = SurgeryBed
+	19484 = CSpaceTerm
+	19486 = SS1Elevator
+	19487 = SS1Ceiling
+	19488 = forceBridge
+	19497 = CPUNode
+	19546 = ElevatorMusic
+	
+	//Items
+	19464 = normalbattery
+	19465 = icbattery
+	19501 = flask
+	19502 = vial
+	19503 = beaker
+	19504 = wrapper
+	19505 = bevcontainer
+	
+	//Access Cards
+	19507 = standardCard
+	19554 = group1Card
+	19555 = medCard
+	19556 = per1Card
+	19557 = SCICard
+	19558 = group4Card
+	19559 = engCard
+	19560 = group3Card
+	19561 = ADMCard
+	19562 = groupBCard
+	19563 = stoMntSecCard
+	19564 = DiegoCard
+	
+	//Doors
+	19466 = SS1door1
+	19467 = SS1door2
+	19468 = SS1door3
+	19469 = SS1door4
+	19470 = SS1door5
+	19471 = SS1door6
+	19472 = SS1door7
+	19473 = SS1door8
+	19474 = SS1door9
+	19475 = SS1door10
+	19476 = SS1door11
+	19477 = SS1door12
+	19478 = SS1door13
+	19479 = SS1door14
+	19480 = SS1door15
+	19481 = SS1door16
+	19489 = forceDoor
+	19542 = SS1ElevatorDoor01
+	19543 = SS1ElevatorDoor02
+	19544 = SS1ElevatorDoor03
+	19545 = SS1ElevatorDoor04
+	
+	//Foliage
+	19491 = Tree1
+	19492 = Tree2
+	19493 = Tree3
+	19494 = SmallPlant
+	19495 = Fern
+	19496 = Grass
+	
+	//props
+	19531 = MedBed
+	19532 = microscope
+	19533 = Chair
+	19534 = TestTubeRack
+	19536 = Barrel1
+	19537 = Barrel2
+	19538 = Barrel3
+	19539 = cart
+	
+	//Patches
+	19498 = SS1medpatch
+	19499 = SS1BerzerkPatch
+	
+	//Lootable Objects
+	19461 = crate
+	19506 = Thermos
+	
+	//cyberspace
+	19508 = CyberSpaceExit
+	19541 = cyberToggle
+	
+	//decal
+	19509 = SS1WallDamage1
+	19510 = SS1WallDamage2
+	19511 = SS1WallDamage3
+	19512 = SS1WallDamage4
+	19513 = SS1WallIcon1
+	19514 = SS1WallIcon2
+	19515 = SS1WallIcon3
+	19516 = SS1WallIcon4
+	19517 = SS1WallIcon5
+	19518 = SS1WallIcon6
+	19519 = SS1WallIcon7
+	19520 = SS1WallIcon8
+	19521 = SS1WallIcon9
+	19522 = SS1WallIcon10
+	19523 = SS1WallIcon11
+	19524 = SS1WallIcon12
+	19525 = SS1WallIcon13
+	19526 = SS1WallIcon14
+	19527 = SS1WallIcon15
+	19528 = SS1WallIcon16
+	19529 = SS1WallIcon17
+	19530 = SS1WallIcon18
+}

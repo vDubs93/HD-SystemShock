@@ -1,0 +1,29 @@
+********************************************
+*                                          *
+*              Sound Effects               *
+*                                          *
+********************************************
+
+Pipe wallhit sound https://freesound.org/people/Czarcazas/sounds/330797/
+Pipe swing sound https://freesound.org/people/qubodup/sounds/60013/
+Dartgun firing sound https://freesound.org/people/Paul368/sounds/255716/
+Dart hitting wall sound https://freesound.org/people/EminYILDIRIM/sounds/536104/
+Dartgun Magazine Handling https://freesound.org/people/LAGtheNoggin/sounds/15545/
+Recharge Station Sound https://freesound.org/people/Teh_Bucket/sounds/518739/, https://freesound.org/people/FlashTrauma/sounds/398274/
+Moving Platform sound mixed from https://freesound.org/people/Nicistarful/sounds/344223/ and SS1 platform sound
+dryfire sound from https://freesound.org/people/j1987/sounds/107806/
+stungun wallhit https://freesound.org/people/michael_grinnell/sounds/512471/
+stungun power toggle https://freesound.org/people/ilm0player/sounds/564643/
+StunGun full charge fire https://freesound.org/people/DayCraftMC/sounds/337112/
+energy weapon overheat https://opengameart.org/content/steam-release-sounds
+Patch Application https://freesound.org/people/SukritSen/sounds/398077/
+Battery Usage https://freesound.org/people/Jofae/sounds/367125/
+Mag-pulse firing sound https://freesound.org/people/michael_grinnell/sounds/512469/, original magpulse sfx
+Mag-pulse hit sound https://freesound.org/people/Snapper4298/sounds/180007/, original magpulse sfx
+Magnum Firing sound https://freesound.org/people/morganpurkis/sounds/369782/ mixed with original SS1 Magnum sound
+
+
+6dof code by dodopod, pulled from https://gitlab.com/dodopod/zscript-player-powers/
+
+All sounds not listed here were either pulled from the original game or made from scratch
+Edited by VDubs

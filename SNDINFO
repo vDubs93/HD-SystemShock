@@ -1,0 +1,94 @@
+/**************************
+ *        Weapons         *
+ **************************/
+
+//Pipe
+pipe/swing 					SWING
+pipe/wallhit 				WALLHIT
+pipe/monsterHit 			MONHIT
+
+//SV-23 Dartgun
+dartgun/fire 				DARTSHOT
+dartgun/loadclip 			CLIPIN
+dartgun/wallhit 			DARTWALL
+
+//DH-07 Stungun
+stungun/fire 				STUNGUN
+stungun/zap 				STUNZAP
+
+//ML-41 Minipistol
+minipistol/fire 			MINIPISF
+
+//Sparqbeam Sidearm
+sparqbeam/fire 				SPARQFIR
+sparqbeam/overload 			SPRQCHGD
+sparqbeam/cooled 			SBCOOLED
+
+//SB-20 Mag-Pulse Rifle
+MagPulse/fire				MGPLSFIR
+MagPulse/hit				MGPLSHIT
+
+//Magnum 2100
+Magnum/fire					MGNMFIRE
+
+//Universal weapon sounds
+weapon/FullCharge 			STUNFULL
+weapons/magout 				MAGHNDLE
+weapon/dryfire 				DryFire
+weapon/toggle 				TOGGLE
+weapon/overheat 			STEAMVNT
+weapon/error 				WEPERROR
+
+//items
+battery/charge 				BATTAPPLY
+
+/**************************
+ *        Enemies         *
+ **************************/
+servbot/hit 				SERVATCK
+servbot/die 				ROBOTEXP
+servbot/see 				SERVBSEE
+servact1 					SERVACT1
+servact2 					SERVACT2
+servact3 					SERVACT3
+servact4 					SERVACT4
+servact5 					SERVACT5
+servact6 					SERVACT6
+servact7 					SERVACT7
+$random servbot/act { servact1 servact2 servact3 servact4 servact5 servact6 servact7 }
+
+humanoidMutant/hit			MUTATTAK
+humanoidMutant/die			MUTDEAD
+humanoidMutant/see			MUTSEE
+
+/**************************
+ *  Interactable Objects  *
+ **************************/
+rechargestation/recharge 	RCHRGING
+surgerybed/operate 			SRGRYBED
+
+/**************************
+ * Environmental objects  *
+ **************************/
+env/forcebridge 			FRCEBRDG
+env/ElevatorMusic 			ELVATREQ
+env/puzzleSolved 			PUZZSOLV
+env/puzzleButton 			PUZZBUTN
+plat/ss1move 				PLATMOVE
+
+/**************************
+ *         Doors          *
+ **************************/
+Door1 						Door1
+Door2 						Door2
+Door3 						Door3
+Door4 						Door4
+Door5 						Door5
+
+/**************************
+ *        Switches        *
+ **************************/
+switches/switch 			MECHSWCH
+switches/button 			BUTTON
+switches/lever 				LEVER
+switches/bigbutton 			BIGBUTTN

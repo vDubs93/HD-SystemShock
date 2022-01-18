@@ -1,0 +1,95 @@
+Model rechargeStation
+{
+	Path "models/rechargeStation"
+	model 0 "rechargeStation.obj"
+	scale 0.625 0.625 0.625
+	
+	frameIndex BATT A 0 0
+}
+	
+Model SurgeryBed
+{
+	Path "models/SurgeryBed"
+	model 0 "SurgeryBed.obj"
+	scale .75 .75 .75
+	
+	frameIndex BATT A 0 0
+}
+
+Model CSpaceTerm
+{
+	Path "models/CSpaceTerminal"
+	model 0 "CSpaceTerminal.obj"
+	
+	frameIndex BATT A 0 0
+}
+
+Model Crate
+{
+	Path "models/crate"
+	model 0 "crate1.obj"
+	frameIndex CRT3 A 0 0
+}
+Model ForceBridge
+{
+	Path "models/forceBridge"
+	model 0 "forceBridge.md3"
+	frameIndex BATT A 0 0
+	frameIndex BATT B 0 1
+}
+Model CPUNode
+{
+	Path "models/CPUNode"
+	model 0 "CPUNode.obj"
+	frameIndex BATT A 0 0
+}
+
+model CyberSpaceExit
+{
+	Path "models/CyberExit"
+	model 0 "CyberExit.obj"
+	scale 1 1 1
+	frameIndex BATT A 0 0
+}
+model MedBed
+{
+	path "models/props/bed"
+	model 0 "bed.md3"
+	scale 1.3 1 1.5
+	frameIndex BATT A 0 0
+}
+model microscope
+{
+	path "models/props/scope"
+	model 0 "scope.obj"
+	scale 2 2 2
+	frameIndex BATT A 0 0
+}
+model chair
+{
+	path "models/props/chair"
+	model 0 "chair.md3"
+	frameIndex BATT A 0 0
+	scale 0.5 0.5 0.5
+}
+model TestTubeRack
+{
+	path "models/props/TestTube"
+	model 0 "TubeRack.md3"
+	frameIndex BATT A 0 0
+	scale 0.2 0.2 0.2
+}
+model cart
+{
+	path "models/props"
+	model 0 "cart.obj"
+	frameIndex BATT A 0 0
+	scale 0.8 0.8 0.8
+}
+model cyberToggle
+{
+	path "models/cyberToggle"
+	model 0 "cyberToggle.md3"
+	frameIndex BATT A 0 0
+	frameIndex BATT B 0 1
+}

@@ -1,0 +1,30 @@
+class SS1_ZF_BoxImage : SS1_ZF_Element {
+	SS1_ZF_BoxTextures boxTex;
+	Vector2 boxScale;
+
+	void config(SS1_ZF_BoxTextures textures = NULL, Vector2 scale = (1, 1)) {
+		self.boxTex = textures;
+		self.boxScale = scale;
+
+		self.alpha = 1;
+	}
+
+	static SS1_ZF_BoxImage create(Vector2 pos, Vector2 size, SS1_ZF_BoxTextures textures = NULL, Vector2 scale = (1, 1)) {
+		let ret = new('SS1_ZF_BoxImage');
+
+		ret.config(textures, scale);
+		ret.setBox(pos, size);
+
+		return ret;
+	}
+
+	override void drawer() {
+		drawBox((0, 0), box.size, boxTex, true, boxScale);
+	}
+
+	override void onUIEvent (SS1_ZF_UiEvent ev) {
+		if (ev.type == UIEvent.Type_MouseMove) {
+			doHover((ev.mouseX, ev.mouseY));
+		}
+	}
+}

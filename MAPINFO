@@ -1,0 +1,18 @@
+defaultmap {
+	Sky1 = "SATURN", .1
+	music = "sshock01"
+}
+
+cluster 1
+{
+	hub
+}
+map MAP01 "Medical"
+{
+	Cluster = 1
+}
+
+map MAP20 "CyberSpace"
+{
+	Cluster = 1
+}

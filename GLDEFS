@@ -1,0 +1,6 @@
+HardwareShader PostProcess scene
+{
+	Name "Berserk"
+	Shader "shaders/Berserk.fp" 330
+	Uniform float timer
+}
