@@ -1,1 +1,1 @@
-System Shock - Hideous Destructor edition
+# HD-SystemShock
