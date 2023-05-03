@@ -1,0 +1,21 @@
+newmtl OBJECT15
+map_Kd textures\OBJECT15.png
+
+newmtl OBJECT19
+map_Kd textures\OBJECT19.png
+
+newmtl OBJECT2
+map_Kd textures\OBJECT2.png
+
+newmtl OBJECT21
+map_Kd textures\OBJECT21.png
+
+newmtl OBJECT35
+map_Kd textures\OBJECT35.png
+
+newmtl OBJECT37
+map_Kd textures\OBJECT37.png
+
+newmtl OBJECT6
+map_Kd textures\OBJECT6.png
+

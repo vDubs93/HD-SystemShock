@@ -9,7 +9,7 @@ class HumanoidMutant : SS1MobBase
 	{
 		//$Category "System Shock/Monsters"
 		//$Title "Humanoid Mutant"
-		//$Sprite "MTIDA0"
+		//$Sprite "MTIDA1"
 		-NOBLOCKMAP;
 		-NOBLOOD
 		scale 0.7;
@@ -75,11 +75,12 @@ class HumanoidMutant : SS1MobBase
 			goto see;
 		death:
 			MTDI A 5 {
-				A_StartSound("humanoidmutant/die");
+				A_Vocalize("humanoidmutant/die");
 				A_TakeInventory("TranqHandler",9999);
 			}
-			MTDI BCDE 5;
-			MTDI F 1 A_NoBlocking();
+			MTDI B 5 A_NoBlocking();
+			MTDI CDE 5;
+			MTDI F 1;
 		dead:
 			#### E 3 canraise{if(abs(vel.z)<2.)frame++;}
 			#### F 5 canraise{if(abs(vel.z)>=2.)setstatelabel("dead");}

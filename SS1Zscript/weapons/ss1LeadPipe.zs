@@ -1,20 +1,44 @@
+class EmptyHands : HDFist {
+	override string gethelptext(){
+		return
+		WEPHELP_FIREMODE.."   Grab/Drag\n"
+		..WEPHELP_ZOOM.."+"..WEPHELP_DROP.."   Drop misc. items\n"
+		;
+	}
+	default
+	{
+		tag "No Weapon";
+	}
+	states
+	{
+		fire:
+		reload:
+		unload:
+		altreload:
+		hold:
+		althold:
+		altfire:
+			goto ready;
+			
+	}
+}
+
 class SS1Pipe : SS1Weapon {
 
 	override double GunMass() { return 10; }
-	override double WeaponBulk() { return 10; }
+	override double WeaponBulk() { return 25; }
 	override string, double GetPickupSprite() { return "PICKA0", 0.20; }
 	override string GetHelpText()
 	{
 		return WEPHELP_FIRE.."  Swing\n"
 		..WEPHELP_ALTFIRE.."  Shove\n";
 	}
-
 	override void DrawHUDStuff(HDStatusBar sb, HDWeapon hdw, HDPlayerPawn hpl)
 	{
 		sb.drawImage("PIPEICON", (-84, -3), sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM, scale: (0.75, 0.5));
 	}
 	
-	override void tick() {
+	override void tick() { 	
 		super.tick();
 		owner.A_TakeInventory("HDFist");
 	}
@@ -28,31 +52,42 @@ class SS1Pipe : SS1Weapon {
 		}
 		
 		
-			LineAttack(angle, 64, pitch, 
-				0, 
-				"None", 
-				"PipePuff", 
-				flags: LAF_NORANDOMPUFFZ | LAF_OVERRIDEZ, 
-				offsetz: height - 12);
-			if (!data.HitActor)	{
-				if(data.HitLine != null || data.HitSector != null)
-				{
-					setWeaponState("WallHit");
-					return true;
-				} else {
-					return false;
-				}
+		LineAttack(angle, 64, pitch, 
+			0, 
+			"None", 
+			"PipePuff", 
+			flags: LAF_NORANDOMPUFFZ | LAF_OVERRIDEZ, 
+			offsetz: height - 12);
+		if (!data.HitActor)	{
+			if(data.HitLine != null || data.HitSector != null)
+			{
+				setWeaponState("WallHit");
+				return true;
+			} else {
+				return false;
 			}
+		}
 		
 
 		Actor pActor = data.HitActor;
 		//dmg += HDMath.TowardsEachOther(self, pActor) * 2;
 		if (pActor){
-			if (invoker.penetration < SS1MobBase(pActor).armorValue) {
-				dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
-			}
-		}
+			if (pActor is 'SS1MobBase'){
+				if (invoker.penetration < SS1MobBase(pActor).armorValue) {
+					dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
+				}
+				if (SS1MobBase(pActor).bISROBOT){
+					A_StartSound("pipe/wallhit");
+				} else {
+					A_StartSound("pipe/monsterHit");
+				}
+				
+			} else if (pActor is 'SS1ScreenCollisionDummy'){
+				pActor.DamageMobj(invoker, self, 1, 'Melee', angle);
+				return true;
+			} else A_StartSound("pipe/wallhit");
 		/*
+		Keeping the original motion-enhanced damage for posterity (also in case I decide to reimplement it later)
 		int hswing = player.cmd.yaw >> 5;
 		int vswing = player.cmd.pitch >> 6;
 		if (hswing <= 0 && vswing != 0)
@@ -64,7 +99,7 @@ class SS1Pipe : SS1Weapon {
 		{
 			dmg *= 0.5;
 		}*/
-		A_StartSound("pipe/monsterHit");
+		
 		//dmg *= frandom(0.7, 1.2);
 
 		let plr = Hacker(self);
@@ -94,43 +129,51 @@ class SS1Pipe : SS1Weapon {
 		}
 		if (countInv("bPatchStrength"))
 		{
-				
-				dmg *= 2;
-		}
-		if (invoker.penetration <  SS1MobBase(pActor).armorValue) {
-			console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
-			dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
-		}
-		if (hd_debug)
-			console.printf("initial damage is "..dmg..".");
-		int defenceValue = SS1MobBase(pActor).defenceValue;
-		int modifier;
-		if (invoker.offenseValue > defenceValue) {
-				modifier = (invoker.offenseValue - defenceValue) + invoker.random_bell_modifier();
-			if (hd_debug)
-				console.printf("Chance for critical hit, modifier is %d", modifier);
-			if (modifier < -3) {
-				dmg /= (modifier+3)^2;
-			} else if (modifier > 3) {
-				if (modifier > 12)
-					modifier = 12;
-				dmg = (dmg * modifier)/3;
 				if (hd_debug)
-					console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					A_Log(String.format("Initial Damage: %f",dmg));
+				dmg *= 2;
+				if (hd_debug)
+					A_Log(String.format("Berserk Damage: %f",dmg));
+				
 			}
-		} else if(hd_debug)
-			console.printf("No chance for critical hit");
-		dmg *= frandom(0.9, 1.1);	
-		if (hd_debug)
-		{
-			A_Log(string.format("Whacked %s for %i damage!", pActor.GetClassName(), dmg));
+			if (pActor is 'SS1MobBase'){
+				if (invoker.penetration <  SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
+				}
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (invoker.offenseValue > defenceValue) {
+						modifier = (invoker.offenseValue - defenceValue) + invoker.random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+				dmg *= frandom(0.9, 1.1);	
+				if (hd_debug)
+				{
+					A_Log(string.format("Whacked %s for %i damage!", pActor.GetClassName(), dmg));
+				}
+
+				pActor.DamageMobj(invoker, self, int(dmg), 'Melee', angle);
+
+				return true;
+			}
 		}
-
-		pActor.DamageMobj(invoker, self, int(dmg), 'Melee', angle);
-
-		return true;
+		pActor.DamageMobj(invoker, self, dmg, "None");
+		return false;
 	}
-
 	action void A_Block(){
 		let hdp = HDPlayerPawn(self);
 
@@ -149,11 +192,12 @@ class SS1Pipe : SS1Weapon {
 					target.A_ChangeVelocity(0);
 				}
 			}
-			target.setStateLabel("Pain");
+			if (target.health > 0)
+				target.setStateLabel("Pain");
 			target.A_StartSound("weapons/smack",CHAN_AUTO);
 			bool kzk = hdp.countinv("PowerStrength");
 			vector3 kickdir=(target.pos-hdp.pos).unit();
-			target.vel=kickdir*(kzk?15:5)*hdp.mass/max(hdp.mass*0.3,target.mass);
+			target.vel=kickdir*5*hdp.mass/max(hdp.mass*0.3,target.mass);
 		}
 		if (CheckInventory('PowerStrength', 1))
 		{
@@ -172,7 +216,7 @@ class SS1Pipe : SS1Weapon {
 			Obituary "%o got %p head bashed in by %k.";
 			Inventory.PickupMessage "Lead Pipe.  For when something needs hitting";
 			Inventory.PickupSound "weapons/pocket";
-			Weapon.SelectionOrder 100;
+			Weapon.SelectionOrder 101;
 			Weapon.kickback 50;
 			Weapon.BobStyle "Alpha";
 			Weapon.BobSpeed 2.6;
@@ -193,7 +237,7 @@ class SS1Pipe : SS1Weapon {
 			PICK A -1;
 			stop;
 		select0:
-			PIPE A 0 A_TakeInventory("HDFist");
+			PIPE A 0;
 			goto select0big;
 		deselect0:
 			PIPE A 0;

@@ -1,3 +1,4 @@
+
 class cyberHacker : SixDoFPlayer
 {
 	default
@@ -17,10 +18,14 @@ class cyberHacker : SixDoFPlayer
 class Hacker : HDPlayerPawn
 {
 	float InternalCharge;
+	float energyUse;
+	float prevCharge;
 	property InternalCharge: InternalCharge;
 	int medPatchCount;
 	int gameTime;
 	int Bpatch;
+	int sightPatch;
+	int staminaPatch;
 	bool looting;
 	int accesses;
 	property Accesses: accesses;
@@ -29,26 +34,35 @@ class Hacker : HDPlayerPawn
 	int cursorX;
 	int cursorY;
 	int btCooldown;
+	int respawnCounter;
 	SS1Puzzle currPuzz;
+	bool onGravLift;
 	default
 	{
 		Hacker.InternalCharge 85.0;
 		MaxSlopeSteepness 45000. / 65536.;
 		DamageFactor "Gas", 0.001;
 		DamageFactor "Magnetic", 0;
+		health 83;
+		//gravity 0.4;
 	}
+	
 	override void GiveBasics(){
 		if(!player)return;
 		A_GiveInventory("SelfBandage");
 		A_GiveInventory("SS1Grenadethrower");
 		A_GiveInventory("MagManager");
 		A_GiveInventory("PickupManager");
-		A_GiveInventory("HDFist");
+		A_GiveInventory("EmptyHands");
+		
 	}
 	override void postbeginplay()
 	{
 		super.postbeginplay();
 		accesses = 0;
+		energyUse = 0;
+		health = 83;
+		HDWeaponSelector.Select(self,"EmptyHands");
 	}
 	override void Travelled()
 	{
@@ -520,84 +534,208 @@ class Hacker : HDPlayerPawn
 
 		return finaldmg;
 	}
+	override void DeathThink(){
+		if(player.cheats&CF_PREDICTING){
+			super.DeathThink();
+			return;
+		}
+		
+		if(player){
+			if(
+				respawndelay>0
+			){
+				
+				player.attacker=null;
+				player.cmd.buttons&=~BT_USE;
+				if(!(level.time&(1|2|4|8|16))){
+					switch(CheckPoF()){
+					case -1:
+						//start losing sequence
+						let hhh=hdlivescounter.get();
+						if(hhh.endgametypecounter<-35)hhh.startendgameticker(hdlivescounter.HDEND_WIPE);
+						break;
+					case 1:
+						respawndelay--;
+						A_Log(player.getusername().." friend wait time: "..respawndelay);
+						break;
+					default:
+						respawndelay=HDCONST_POFDELAY;
+						break;
+					}
+				}
+			}else if(hd_pof){
+				player.cmd.buttons|=BT_USE;
+				let hhh=hdhandlers(eventhandler.find("hdhandlers"));
+				hhh.corpsepos[playernumber()]=(pos.xy,floor(pos.z)+0.001*angle);
+			}
+			if(!player.bot){
+				if (respawnCounter > 0)
+					respawnCounter--;
+				if (respawnCounter==0) {
+					SS1RespawnPoint point;
+					ThinkerIterator eiterator = ThinkerIterator.create("SS1RespawnPoint");
+					point = SS1RespawnPoint(eiterator.next());
+					if (point && point.isActive()){
+						vector3 newpos = (point.pos.x, point.pos.y, point.pos.z);
+						SetOrigin(newpos, false);
+						self.player.Resurrect();
+						levelreset();
+						healthreset();
+						health = random(50, 80);
+						incaptimer=0;
+						A_Capacitated();
+						if (playercorpse){
+							playercorpse.Destroy();
+						}
+						
+						return;
+					}
+				}
+				if(deathcounter==144&&!(player.cmd.buttons&BT_USE)){
+					showgametip();
+					specialtip=specialtip.."\n\n\clPress \cdUse\cl to continue.";
+					deathcounter=145;
+				}else if(
+					deathcounter<144
+					&&player
+				){
+					player.cmd.buttons&=~BT_USE;
+					deathcounter++;
+				}
+				if(playercorpse){
+					setorigin((playercorpse.pos.xy+angletovector(angle)*3,playercorpse.pos.z),true);
+				}
+			}
+		}
+
+		if(hd_dropeverythingondeath){
+			array<inventory> keys;keys.clear();
+			for(inventory item=inv;item!=null;item=item.inv){
+				if(item is "Key"){
+					keys.push(item);
+					item.detachfromowner();
+				}else if(item is "HDPickup"||item is "HDWeapon"){
+					DropInventory(item);
+				}
+				if(!item||item.owner!=self)item=inv;
+			}
+			for(int i=0;i<keys.size();i++){
+				keys[i].attachtoowner(self);
+			}
+		}
+
+
+		viewbob=0;
+
+		double oldangle=angle;
+		double oldpitch=pitch;
+		super.DeathThink();
+
+		vel=(0,0,0);
+		angle=oldangle;
+		pitch=min(oldpitch+1,45);
+	}
+	
+	override void Die(actor source,actor inflictor,int dmgflags,name MeansOfDeath) {
+		respawnCounter = 35;
+		super.Die(source, inflictor, dmgflags, MeansOfDeath);
+		
+	}
 	override void tick()
 	{
 		super.tick();
 		if (level.LevelNum<20){
 			if (vel == (0,0,0))
 				viewbob = 0;
+			
 			gameTime++;
 			let player = self.player;
-			
-			
 			if (!(player.readyWeapon is 'LootMenu' || 
 				  player.readyWeapon is "HDIncapWeapon" || 
 				  player.readyWeapon is 'nullweapon'))
 				prevWeapon = player.readyWeapon;
-			else if (looting == false && !(getplayerinput(INPUT_BUTTONS)&BT_SPEED))
+			else if (looting == false && !(getplayerinput(INPUT_BUTTONS)&BT_SPEED) && prevweapon)
 				hdweaponselector.select(self, prevweapon.getClassName(), 0);
-			if (A_CheckProximity("see", "gravlift",32,1, CPXF_NOZ)) {
-				double fm = player.cmd.forwardmove;
-				double sm = player.cmd.sidemove;
-				if (fm || sm) {
-					if (fm > 0)
-						self.VelFromAngle();
-					else if (fm < 0)
-						self.VelFromAngle(-speed);
-					if (sm < 0)
-						self.VelFromAngle(speed,angle+90);
-					else if (sm > 0)
-						self.VelFromAngle(speed,angle-90);
-				} else {
-					self.vel.x = 0;
-					self.vel.y = 0;
-				}
-			}
-			if (medPatchCount){
-				if (gameTime%16==0){
-					medPatchCount--;
-					health += health < maxhealth() ? 1 : 0 ;
-					woundcount -= woundcount > 0 ? 2 : 0;
-					unstablewoundcount -= unstablewoundcount > 0 ? 2 : 0;
-					bloodloss -= bloodloss > 0 ? 2 : 0;
-					burncount -= burncount > 0 ? 1 : 0;
-					fatigue += fatigue < 95 ? 1 : 0;
-				}
-			}
-			if (Bpatch){
-				Shader.setEnabled(self.player,"Berserk", true);
-				A_GiveInventory("bPatchStrength");
-				if (gameTime%8 == 0) {
-					Bpatch--;
-				}
-			} else {
-				Shader.setEnabled(self.player,"Berserk", false);
-				A_TakeInventory("bPatchStrength", 100);
-			}
+			
+			DoPatches();
+			
 			if (looting == false)
 				A_TakeInventory("LootMenu");
 			if (doPuzzle) {
 				runPuzzle();
 			} else {
 				player.cheats &= ~CF_FROZEN;
-				if (currPuzz && currPuzz.getClassName() == "numPadPuzzle")
+				if (currPuzz)
 					currPuzz = NULL;
 			}
 		}
+		self.IncapacitatedCheck();
 	}
+	
+	void DoPatches()
+	{
+		let p = self.player;
+		Shader.setEnabled(p,"poisoned", true);
+		if (medPatchCount){
+			if (gameTime%16==0){
+				
+				medPatchCount--;
+				incapTimer = incapTimer>0?incapTimer-5:0;
+				health += health < maxhealth() ? 1 : 0 ;
+				woundcount = woundcount > 1 ? woundcount - 2 : 0;
+				unstablewoundcount = unstablewoundcount > 1 ? unstablewoundcount - 2 : 0;
+				oldwoundcount = oldwoundcount > 0 ? oldwoundcount - 1 : 0;
+				bloodloss = bloodloss > 20 ? bloodloss - 20 : 0;
+				burncount = burncount > 1 ? burncount - 1 : 0;
+				fatigue += fatigue < 95 ? 1 : 0;
+			}
+		}
+		if (Bpatch){
+			Shader.setEnabled(p,"Berserk", true);
+			A_GiveInventory("bPatchStrength");
+			A_GiveInventory("PowerNightSight");
+			if (gameTime %8 == 0)
+				Bpatch--;
+			if (BPatch == 0 && sightPatch <= 40)
+				A_TakeInventory("PowerNightSight");
+		} else {
+			Shader.setEnabled(p,"Berserk", false);
+			A_TakeInventory("bPatchStrength", 100);
+		}
+		if (sightPatch > 0) {
+			if (sightPatch == 40){
+				Shader.setEnabled(p, "Blindness", true);
+				A_TakeInventory("PowerNightSight");
+			}
+			if (gameTime % 16 == 0) sightPatch--;
+		} else Shader.setEnabled(p, "Blindness", false);
+		
+		if (staminaPatch) {
+			if (random(0, 43 > staminaPatch)) {
+				staminaPatch = 0;
+				fatigue = 100;
+			}
+			else { 
+				fatigue = 0;
+				if (gameTime%16 == 0) staminaPatch--;
+			}
+		}
+	}
+	
 	void runPuzzle()
 	{
 		if (!currPuzz) {
 			CheckProximity("SS1Puzzle",48,1, CPXF_ANCESTOR | CPXF_CHECKSIGHT | CPXF_SETTARGET);
 			cursorX = 0;
 			cursorY = 0;
-			currPuzz = SS1Puzzle(target);
-			if (currPuzz)
-				player.cheats |= CF_FROZEN;
+
 		} else {
+			if (doPuzzle){
+				player.cheats |= CF_FROZEN;
+			}
+			int input = getPlayerInput(INPUT_BUTTONS);
+			int oldInput = getPlayerInput(INPUT_OLDBUTTONS);
 			if (doPuzzle == 1) {
-				int input = getPlayerInput(INPUT_BUTTONS);
-				int oldInput = getPlayerInput(INPUT_OLDBUTTONS);
 				int numArray[4][3];
 				numArray[0][0] = 0;
 				numArray[0][0] = 0;
@@ -630,9 +768,24 @@ class Hacker : HDPlayerPawn
 						numPadPuzzle(currPuzz).pressNumber(numArray[cursorY][cursorX]);
 					}
 				}
-				if ((input & BT_ZOOM)) {
-					doPuzzle = 0;
+			}
+			if (doPuzzle == 2) {
+				
+				if ((input & BT_FORWARD) && !(oldInput & BT_FORWARD) && cursorY > 0){
+					cursorY --;
+				} else if ((input & BT_BACK) && !(oldInput & BT_BACK) && cursorY < 4) {
+					cursorY ++;
+				} else if ((input & BT_MOVELEFT) && !(oldInput & BT_MOVELEFT) && cursorX > 0){
+					cursorX --;
+				} else if ((input & BT_MOVERIGHT) && !(oldInput & BT_MOVERIGHT) && cursorX < 6) {
+					cursorX ++;
 				}
+				if ((input & BT_USE) && !(oldInput & BT_USE)) {
+					AccessPanelPuzzle(currPuzz).flipSpace(cursorX, cursorY);
+				}
+			}
+			if ((input & BT_ZOOM)) {
+				doPuzzle = 0;
 			}
 		}
 	}
@@ -649,6 +802,8 @@ class Hacker : HDPlayerPawn
 		bpickup=!hasgrabbed;
 		PickupGrabber();
 	}
+
+
 }
 
 class bPatchStrength : PowerStrength
@@ -658,51 +813,5 @@ class bPatchStrength : PowerStrength
 		Powerup.Duration 1;
 		Powerup.Color "00 00 00", 0.0;
 		+INVENTORY.HUBPOWER;
-	}
-}
-
-class HackerStatusBar : HDStatusBar
-{
-	DynamicValueInterpolator pCharge;
-	override void init()
-	{
-		super.init();
-		pCharge = DynamicValueInterpolator.Create(0,0.01,1,4);
-	}
-	override void Draw(int state, double ticfrac)
-	{
-		if (cplayer.mo is 'Hacker')
-		{
-			pCharge.Update(Hacker(cplayer.mo).InternalCharge);
-		}
-		let hpl=Hacker(cplayer.mo);
-		beginHud(forcescaled:true);
-		DrawImage("ChargeOutline",(165,55),DI_SCREEN_CENTER_TOP);
-		if (level.LevelNum<20){
-			if (hpl.doPuzzle){
-				DrawPuzzle(hpl.doPuzzle);
-			}
-			drawbar(
-					"ChargeBar","EmptyBar",
-					pCharge.getValue(),255,
-					(120,50),-1,
-					0,self.DI_SCREEN_CENTER_TOP, true
-				);
-		}
-		super.draw(state, ticfrac);
-	}
-	void DrawPuzzle(int puzzleType)
-	{
-		if (puzzleType == 1){
-			let hpl = Hacker(cplayer.mo);
-			DrawImage("NumPad", (6, -6), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255, (320, 200),(0.5, 0.5));
-			DrawImage("NPInput", (6, -70), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255, (320, 200),(0.5, 0.5));
-			DrawImage(gametic % 10 < 5 ? "NPCursor" : "", ((hpl.cursorX * 16) + 6, -((hpl.cursorY * 16) + 6)), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255,
-			(320, 200),(0.5, 0.5));
-			Font myfont = "NUMPADF";
-			HUDFont font = HUDFont.Create(myfont, 16, false);
-			DrawString(font,numPadPuzzle(hpl.currPuzz).getInput(), (10,-84), scale:(0.5, 0.5));
-			
-		}
 	}
 }

@@ -4,6 +4,8 @@ class SS1Weapon : HDWeapon
 	property penetration: penetration;
 	int offenseValue;
 	property offenseValue: offenseValue;
+	int user_ammo;
+	property currAmmo: user_ammo;
 	override string getHelpText()
 	{
 		return "";
@@ -40,6 +42,37 @@ class SS1Weapon : HDWeapon
          if(WFrame && WFrame.CurState != null) {WFrame.frame = InputFrame;}   // Set input frame to the desired layer
       }
    }
+}
+
+class SS1Handgun:SS1Weapon{
+	bool wronghand;
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
+	action void A_SwapHandguns(){
+		let mwt=SpareWeapons(findinventory("SpareWeapons"));
+		if(!mwt){
+			setweaponstate("whyareyousmiling");
+			return;
+		}
+		int pistindex=mwt.weapontype.find(invoker.getclassname());
+		if(pistindex==mwt.weapontype.size()){
+			setweaponstate("whyareyousmiling");
+			return;
+		}
+		A_WeaponBusy();
+
+		array<string> wepstat;
+		string wepstat2="";
+		mwt.weaponstatus[pistindex].split(wepstat,",");
+		for(int i=0;i<wepstat.size();i++){
+			if(i)wepstat2=wepstat2..",";
+			wepstat2=wepstat2..invoker.weaponstatus[i];
+			invoker.weaponstatus[i]=wepstat[i].toint();
+		}
+		mwt.weaponstatus[pistindex]=wepstat2;
+
+		invoker.wronghand=!invoker.wronghand;
+	}
 }
 
 class SS1Puff : HDPuff {
@@ -119,8 +152,7 @@ class SS1Bullet:HDBulletActor{
 	property dmg: dmg;
 	
 	override void onHitActor(actor hitactor,vector3 hitpos,vector3 vu,int flags){
-		if (hitactor is 'SS1Door' && SS1Door(hitactor).closed == false)
-			return;
+		if(!hitactor.bshootable)return;
 		if(max(abs(pos.x),abs(pos.y))>=32768){destroy();return;}
 		actor a=spawn("IdleDummy",pos,ALLOW_REPLACE);
 		a.stamina=10;
@@ -129,33 +161,35 @@ class SS1Bullet:HDBulletActor{
 		LineTrace(angle, 56, pitch, TRF_NOSKY, offsetz: height, data: data);
 		Actor pActor = data.hitactor;
 		if (pActor && !(pActor is 'Hacker')) {
-			if (penetration <  SS1MobBase(pActor).armorValue) {
-				console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
-				dmg -= (SS1MobBase(pActor).armorValue - penetration);
-			}
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
-			int defenceValue = SS1MobBase(pActor).defenceValue;
-			int modifier;
-			if (offenseValue > defenceValue) {
-
-				modifier = (offenseValue - defenceValue) + random_bell_modifier();
-				if (hd_debug)
-					console.printf("Chance for critical hit, modifier is %d", modifier);
-				if (modifier < -3) {
-					dmg /= (modifier+3)^2;
-				} else if (modifier > 3) {
-					if (modifier > 12)
-						modifier = 12;
-					dmg = (dmg * modifier)/3;
-					if (hd_debug)
-						console.printf(string.format("Critical Hit for %d damage",dmg)); 
+			if (pActor is 'SS1MobBase'){
+				if (penetration <  SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - penetration);
 				}
-			} else if(hd_debug)
-				console.printf("No chance for critical hit");
-			dmg *= frandom(0.9, 1.1);	
-			if (hd_debug)
-				console.printf("final damage is "..dmg..".");
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (offenseValue > defenceValue) {
+	
+					modifier = (offenseValue - defenceValue) + random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+				dmg *= frandom(0.9, 1.1);	
+				if (hd_debug)
+					console.printf("final damage is "..dmg..".");
+			}
 			pActor.damageMobj(self,HDPlayerPawn(self),int(dmg),"Bullet");
 			class<actor> hitblood;
 			bool noblood = pactor.bNoBlood;

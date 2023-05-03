@@ -1,0 +1,9 @@
+newmtl OBJECT15
+map_Kd textures\OBJECT15.png
+
+newmtl OBJECT19
+map_Kd textures\OBJECT19.png
+
+newmtl OBJECT20
+map_Kd textures\OBJECT20.png
+

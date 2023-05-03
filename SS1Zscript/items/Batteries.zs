@@ -20,12 +20,13 @@ class battery : HDPickup
 	}
 	default
 	{
-		//$Category "System Shock/Pickups"
+		//$Category "System Shock/Items/Batteries"
 		//$Title "Battery"
 		//$Sprite "BATTA0"
-		Inventory.icon "BATTA0";
+		Inventory.icon "BATTC0";
 		Inventory.PickupMessage "Picked up a battery that can recharge your neural interface.";
 		hdpickup.bulk 10;
+		
 	}
 	states
 	{
@@ -43,6 +44,7 @@ class NormalBattery : battery
 	default
 	{
 		hdpickup.refid "ssb";
+		scale .24;
 	}
 	states
 	{
@@ -63,9 +65,10 @@ class ICBattery : battery
 		//$Category "System Shock/Pickups"
 		//$Title "ICad Battery"
 		//$Sprite "BATTB0"
-		Inventory.icon "BATTB0";
+		Inventory.icon "BATTD0";
 		Inventory.PickupMessage "Picked up an Illumium-cadmium battery.";
 		hdpickup.refid "sib";
+		scale .24;
 	}
 	states
 	{

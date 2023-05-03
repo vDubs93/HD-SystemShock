@@ -1,3 +1,4 @@
+/*
 texture CMP1_1 range CMP1_4 tics 2.5
 
 texture CMP2_1 range CMP2_4 rand 3.5 5
@@ -73,20 +74,9 @@ pic 7 tics 2
 pic 6 tics 2
 pic 5 tics 2
 pic 1 rand 10 20
-
-texture GROWTH_1 range GROWTH_4 tics 8 oscillate
-
-animatedDoor Door4
-		opensound DS_EMPTY
-		closesound DS_EMPTY
-		pic Door4_0
-		pic Door4_1
-		pic Door4_2
-		pic Door4_3
-		pic Door4_4
-		pic Door4_5
-		pic Door4_6
-		pic Door4_7
+*/
+texture GROWTH1 range GROWTH5 tics 8 oscillate
+texture ChargeIcon1 range ChargeIcon5 tics 10 oscillate
 /*
 The LOCKX_X textures should be animated via an ACS script.
 The same goes for the screen breaking and shutting off

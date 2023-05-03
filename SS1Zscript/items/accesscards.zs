@@ -25,6 +25,7 @@ class SS1AccessCard : HDPickup
 		SS1AccessCard.accessLevel SS1ACCESS_NONE;
 		SS1AccessCard.cardSprite "";
 		Inventory.icon "";
+		scale 0.4;
 		+FLATSPRITE;
 	}
 	override void ActualPickup(Actor other)
@@ -139,8 +140,8 @@ class group4Card : SS1AccessCard
 		//$Title "Group-4 Access Card"
 		//$Sprite "STAIF0"
 		SS1AccessCard.accessLevel SS1ACCESS_GROUP4;
-		SS1AccessCard.cardSprite "STAIF0";
-		Inventory.icon "STAIF0";
+		SS1AccessCard.cardSprite "STAIB0";
+		Inventory.icon "STAIB0";
 		Inventory.pickupMessage "Group-4 Access Acquired";
 	}
 	states

@@ -22,13 +22,14 @@ Class SS1MagCart : HDBattery
 		hdmagammo.maxperunit 25;
 		hdmagammo.roundtype "";
 		tag "Magnetic Cartridge";
-		hdpickup.refid HDLD_BATTERY;
+		hdpickup.refid "mgc";
 		hdpickup.bulk ENC_BATTERY;
 		hdmagammo.magbulk ENC_BATTERY;
 		hdmagammo.mustshowinmagmanager true;
 		inventory.pickupmessage "Picked up a magnetic cartridge.";
 		inventory.icon "MPMGA0";
 		scale 0.25;
+		
 	}
 	states(actor){
 		spawn:
@@ -44,8 +45,7 @@ Class SS1MagCart : HDBattery
 }
 Class SS1MagPulse : SS1Weapon
 {
-	int user_ammo;
-	property currAmmo: user_ammo;
+	
 	default
 	{
 		//$Category "System Shock/Weapons"
@@ -58,8 +58,10 @@ Class SS1MagPulse : SS1Weapon
 		scale 0.25;
 		tag "SB-20 Mag-pulse rifle";
 		Inventory.pickupMessage "SB-20 Mag-pulse rifle.  Great for robots, not much else.";
-		SS1MagPulse.currAmmo 25;
+		SS1Weapon.currAmmo 25;
 	}
+	override double GunMass() { return 8; }
+	override double WeaponBulk() { return 80; }
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
@@ -92,6 +94,7 @@ Class SS1MagPulse : SS1Weapon
 			);*/
 		}
 		sb.drawImage("MGPICON", (-84, -3), sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM, scale: (0.25, 0.25));
+		sb.drawnum(hpl.countinv("SS1MagCart"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		sb.drawwepnum(weaponStatus[MagP_CurrAmmo], 25);
 	}
 	
@@ -120,12 +123,6 @@ Class SS1MagPulse : SS1Weapon
 			"MGPback",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			scale:scc
 		);
-	}
-	
-	override void postbeginplay()
-	{
-		super.postbeginplay();
-		weaponStatus[MagP_CurrAmmo] = user_ammo;
 	}
 	
 	action bool A_FirePulse()
@@ -254,7 +251,6 @@ Class SS1MagPulse : SS1Weapon
 				let mmm=hdmagammo(findinventory("SS1MagCart"));
 				if(mmm){
 					invoker.weaponStatus[MagP_CurrAmmo]= mmm.TakeMag(true);
-					Console.printf("Reload Succeeded");
 				}
 			}
 			goto reloadend;
@@ -264,8 +260,18 @@ Class SS1MagPulse : SS1Weapon
 			---- A 1 offset(2,38);
 			---- A 1 offset(1,34);
 			goto nope;
-		
-		
+	}
+	override void initializewepstats(){
+		switch(user_ammo){
+			case -1:
+				weaponstatus[MagP_CurrAmmo]=0;
+				break;
+			case 0:
+				weaponstatus[MagP_CurrAmmo]=25;
+				break;
+			default:
+				weaponstatus[MagP_CurrAmmo]=user_ammo;
+		}
 	}
 }
 
@@ -286,32 +292,34 @@ class SS1MagPulseProjectile : SS1SlowProjectile
 		LineTrace(angle, 56, pitch, TRF_NOSKY, offsetz: height, data: data);
 		Actor pActor = data.hitActor;
 		if(pActor && !(pActor is 'Hacker')){
-			if (penetration < SS1MobBase(pActor).armorValue) {
-				console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
-				dmg -= (SS1MobBase(pActor).armorValue - penetration);
-			}
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
-			int defenceValue = SS1MobBase(pActor).defenceValue;
-			int modifier;
-			if (offenseValue > defenceValue) {
-
-				modifier = (offenseValue - defenceValue) + random_bell_modifier();
-				if (hd_debug)
-					console.printf("Chance for critical hit, modifier is %d", modifier);
-				if (modifier < -3) {
-					dmg /= (modifier+3)^2;
-				} else if (modifier > 3) {
-					if (modifier > 12)
-						modifier = 12;
-					dmg = (dmg * modifier)/3;
-					if (hd_debug)
-						console.printf(string.format("Critical Hit for %d damage",dmg)); 
+			if (pActor is 'SS1MobBase'){
+				if (penetration < SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - penetration);
 				}
-			} else if(hd_debug)
-				console.printf("No chance for critical hit");
-			if (hd_debug)
-				console.printf("randomizing damage");
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (offenseValue > defenceValue) {
+	
+					modifier = (offenseValue - defenceValue) + random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+				if (hd_debug)
+					console.printf("randomizing damage");
+			}
 			dmg *= frandom(0.9, 1.1);
 			dmg = pActor.damageMobj(self, target, dmg, "Magnetic");
 			if (hd_debug)
@@ -338,7 +346,7 @@ class SS1MagPulseProjectile : SS1SlowProjectile
 	states
 	{
 		Spawn:
-			MPRJ ABCD 3;
+			MPRJ ABCD 3 bright;
 			loop;
 		Death:
 			TNT1 A 0 {
@@ -347,8 +355,8 @@ class SS1MagPulseProjectile : SS1SlowProjectile
 					bnointeraction=true;
 			bmissile=false;
 					}
-			MPEX ABCD 1;
-			#### EFG 2;
+			MPEX ABCD 1 bright;
+			#### EFG 2 bright;
 			stop;
 	}
 }

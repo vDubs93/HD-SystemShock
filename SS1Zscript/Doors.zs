@@ -6,45 +6,86 @@ class SS1Door : SS1SwitchableActor
 	property doorType: doorType;
 	int user_wait;
 	bool user_locked;
+	int user_startframe;
 	bool locked;
 	int timer;
 	int numFrames;
+	bool dummyActivate;
 	string user_lockedmessage;
+	property lockedmessage: user_lockedmessage;
+	bool isLookingAt(Actor user){
+		user = Hacker(user);
+		if(!user)
+			return false;
+		FLineTraceData ray;
+		user.LineTrace(user.angle, 1024, user.pitch, TRF_ALLACTORS, Hacker(user).viewheight, data: ray);
+		Actor pActor = ray.HitActor;
+		if (pActor){
+			if (pActor == self)
+				return true;
+		}
+		return false;
+	}
 	override void postBeginPlay() {
 		timer = 0; 
 		line_setblocking(tid,913,0);
 		closed = true;
+		A_SpawnItemEx("doorDummy", 0,22,0, 0,0,0,0,SXF_SETMASTER);
+		A_SpawnItemEx("doorDummy", 0,-22,0, 0,0,0,0,SXF_SETMASTER);
 	}
 	override bool used(Actor user)
 	{
 		super.used(user);
-		if (!user_locked || (user_clearance & Hacker(user).accesses)) {
-			unlock();
-			SS1Door next;
-			ActorIterator iterator = Level.createActorIterator(tid,"SS1Door");
-			for(next=SS1Door(iterator.next());next!=null;next=SS1Door(iterator.next())){
-				next.switchState();
+		if (instatesequence(CurState,ResolveState("open")) && !dummyActivate)
+			return false;
+		vector3 userpos = (user.pos.x, user.pos.y, user.pos.z+(user.height/2));
+		float distance = abs((userpos- pos).length());
+		if (user == self || isLookingAt(user) && distance < 128 || dummyActivate) {
+			dummyActivate = false;
+			if (user == self || !user_locked || (
+				user_clearance & Hacker(user).accesses 
+				)) {
+				unlock();
+				SS1Door next;
+				ActorIterator iterator = Level.createActorIterator(tid,"SS1Door");
+				for(next=SS1Door(iterator.next());next!=null;next=SS1Door(iterator.next())){
+					next.switchState();
+				}
+			} else {
+				user.A_Print(user_lockedMessage);
 			}
-		} else {
-			user.A_Print(user_lockedMessage);
 		}
+		dummyActivate = false;
 		return true;
 	}
 	void unlock() {
 		user_locked = false;
 	}
+	void lock() {
+		user_locked = true;
+	}
+	bool isLocked(){ 
+		return user_locked; 
+	}
 	override void switchState()
 	{
 		if(instatesequence(CurState,ResolveState("open"))){
 			if (!CountProximity("Hacker",10)) {
+				A_StartSound(seesound);
+				 bSHOOTABLE = True;
+				 bNOINTERACTION = false;
+				 A_ChangeLinkFlags(false);
 				setStateLabel("close");
 				closed = true;
 				timer = 0;
 				line_setBlocking(tid, 913, 0);
-				A_StartSound(seesound);
+				
 			}
 		} else {
 			setStateLabel("open");
+			 bSHOOTABLE = false;
+			 bNOINTERACTION = true;
+			 A_ChangeLinkFlags(true);
 			line_setBlocking(tid, 0, 913);
 				A_StartSound(seesound);
 				closed = false;
@@ -58,16 +99,15 @@ class SS1Door : SS1SwitchableActor
 	override void tick()
 	{
 		super.tick();
-		if (health < 2 && user_locked)
+		/*if (health < 2 && user_locked)
 		{
-		A_Log("Unlocked");
 			unlock();
 			SS1Door next;
 			ActorIterator iterator = Level.createActorIterator(tid,"SS1Door");
 			for(next=SS1Door(iterator.next());next!=null;next=SS1Door(iterator.next())){
 				next.switchState();
 			}
-		}
+		}*/
 		
 		if(instatesequence(CurState,ResolveState("open")))
 		{
@@ -84,22 +124,119 @@ class SS1Door : SS1SwitchableActor
 	{
 		//$Category "System Shock/Doors
 		+WALLSPRITE;
-		+NONSHOOTABLE;
+		+SHOOTABLE;
+		+NOBLOOD;
 		height 64;
 		radius 16;
-		health 2;
+		health -1;
+		SS1Door.lockedmessage "This door is locked.";
 	}
 	states
 	{
 		spawn:
 			TNT1 A 1;
 			loop;
+		setFrame:
+			#### # -1 {frame = user_startFrame;}
+			loop;
 		open:
-			#### # 4 { frame += frame < self.numFrames-1 ? 1 : 0;}
+			#### # 4 {
+				frame += frame < self.numFrames-1 ? 1 : 0;}
 			wait;
 		close:
-			#### # 4 { frame -= frame > 0 ? 1 : 0;}
+			#### # 4 {
+				frame -= frame > 0 ? 1 : 0;}
 			wait;
+	}
+}
+
+class SS1FloorDoor : SS1Door
+{
+	default
+	{
+		//$Category "System Shock/Doors
+		+FLATSPRITE;
+		-WALLSPRITE;
+		height 1;
+		radius 32;
+		+NOGRAVITY;
+		+SOLID;
+		+DONTTHRUST;
+	}
+	override void postBeginPlay() {
+		timer = 0; 
+		closed = true;
+	}
+	override bool used(Actor user){
+		vector3 userpos = (user.pos.x, user.pos.y, user.pos.z+(user.height/2));
+		float distance = abs((userpos- pos).length());
+		if (isLookingAt(user) && distance < 128) {
+			if (closed || (!closed && distance > 32)) {
+				switchState();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	override void switchState()
+	{
+		if(instatesequence(CurState,ResolveState("open"))){
+			A_StartSound(seesound);
+			setStateLabel("close");
+			closed = true;
+			timer = 0;
+			bSOLID = true;
+		} else {
+			bSOLID = false;
+			setStateLabel("open");
+			A_StartSound(seesound);
+			closed = false;
+			if (user_wait > 0)
+				timer = user_wait * 35;
+			else
+				timer = -1;
+		}
+	}
+}
+
+class doorDummy : Actor
+{
+	default
+	{
+		radius 6;
+		height 64;
+		+NONSHOOTABLE;
+		-SOLID;
+		+WALLSPRITE;
+	}
+	bool isLookingAt(Actor user){
+		user = Hacker(user);
+		FLineTraceData ray;
+		user.LineTrace(user.angle, 1024, user.pitch, TRF_ALLACTORS, Hacker(user).viewheight, data: ray);
+		Actor pActor = ray.HitActor;
+		if (pActor){
+			if (pActor == self)
+				return true;
+		}
+		return false;
+	}
+	
+	override bool used(Actor user){
+		vector3 userpos = (user.pos.x, user.pos.y, user.pos.z+(user.height/2));
+		float distance = abs((userpos- pos).length());
+		if (isLookingAt(user) && distance<128) {
+			SS1Door(master).dummyActivate = true;
+			master.used(user);
+			return true;
+		}
+		return false;
+	}
+	states
+	{
+		spawn:
+			TNT1 A 1;
+			loop;
 	}
 }
 
@@ -110,6 +247,7 @@ class forceDoor : SS1Door
 		super.postbeginplay();
 		numframes = 2;
 	}
+	override bool used(Actor user) {return null;}
 	default
 	{
 		//$Category "System Shock/Doors"
@@ -122,7 +260,7 @@ class forceDoor : SS1Door
 	{
 		spawn:
 			FRCD A -1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -144,7 +282,7 @@ class SS1door1 : SS1door
 	{
 		spawn:
 			DOR1 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door2 : SS1door
@@ -152,7 +290,7 @@ class SS1door2 : SS1door
 	override void postbeginplay()
 	{
 		super.postbeginplay();
-		numframes = 7;
+		numframes = 8;
 	}	
 	default
 	{
@@ -165,7 +303,7 @@ class SS1door2 : SS1door
 	{
 		spawn:
 			DOR2 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door3 : SS1door
@@ -186,7 +324,7 @@ class SS1door3 : SS1door
 	{
 		spawn:
 			DOR3 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door4 : SS1door
@@ -207,7 +345,7 @@ class SS1door4 : SS1door
 	{
 		spawn:
 			DOR4 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door5 : SS1door
@@ -228,7 +366,7 @@ class SS1door5 : SS1door
 	{
 		spawn:
 			DOR5 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -250,7 +388,7 @@ class SS1door6 : SS1door
 	{
 		spawn:
 			DOR6 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -272,7 +410,7 @@ class SS1door7 : SS1door
 	{
 		spawn:
 			DOR7 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -294,7 +432,7 @@ class SS1door8 : SS1door
 	{
 		spawn:
 			DOR8 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -316,7 +454,7 @@ class SS1door9 : SS1door
 	{
 		spawn:
 			DOR9 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 
@@ -337,7 +475,7 @@ class SS1door10 : SS1door
 	{
 		spawn:
 			DR10 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door11 : SS1door
@@ -358,7 +496,7 @@ class SS1door11 : SS1door
 	{
 		spawn:
 			DR11 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door12 : SS1door
@@ -378,7 +516,7 @@ class SS1door12 : SS1door
 	{
 		spawn:
 			DR12 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door13 : SS1door
@@ -398,7 +536,7 @@ class SS1door13 : SS1door
 	{
 		spawn:
 			DR13 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1door14 : SS1door
@@ -418,7 +556,27 @@ class SS1door14 : SS1door
 	{
 		spawn:
 			DR14 A 1;
-			wait;
+			goto SetFrame;
+	}
+}
+class SS1FloorDoor1 : SS1FloorDoor
+{
+	override void postbeginplay()
+	{
+		super.postbeginplay();
+		numframes = 6;
+	}
+	default
+	{
+		//$Title "Secret Soft-Panelling Door - Floor"
+		SS1Door.doortype 14;
+		seesound "door1";
+	}
+	states
+	{
+		spawn:
+			FDR1 A 1;
+			goto SetFrame;
 	}
 }
 class SS1door15 : SS1door
@@ -438,7 +596,7 @@ class SS1door15 : SS1door
 	{
 		spawn:
 			DR15 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class ss1door16 : ss1door11
@@ -453,7 +611,7 @@ class ss1door16 : ss1door11
 	{
 		spawn:
 			DR16 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1ElevatorDoor01 : ss1Door
@@ -473,7 +631,7 @@ class SS1ElevatorDoor01 : ss1Door
 	{
 		spawn:
 			DR17 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1ElevatorDoor02 : ss1Door
@@ -492,7 +650,7 @@ class SS1ElevatorDoor02 : ss1Door
 	{
 		spawn:
 			DR18 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1ElevatorDoor03 : ss1Door
@@ -511,7 +669,7 @@ class SS1ElevatorDoor03 : ss1Door
 	{
 		spawn:
 			DR19 A 1;
-			wait;
+			goto SetFrame;
 	}
 }
 class SS1ElevatorDoor04 : ss1Door
@@ -530,6 +688,6 @@ class SS1ElevatorDoor04 : ss1Door
 	{
 		spawn:
 			DR20 A 1;
-			wait;
+			goto SetFrame;
 	}
 }

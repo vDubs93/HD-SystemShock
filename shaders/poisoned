@@ -1,0 +1,6 @@
+void main() {
+	vec2 size = textureSize(InputTexture, 0);
+	vec4 c = texture(InputTexture, TexCoord);
+	vec2 z = TexCoord /textureSize(InputTexture, 0);
+	FragColor = c + vec4(0, mod(timer/100, TexCoord.y / size.y), 0, 1);
+}

@@ -1,3 +1,4 @@
+const numLoots = 16;
 const SS1CONST_NOLOOT = 0;
 const SS1CONST_NBATTERY = 1;
 const SS1CONST_WRAPPER = 2;
@@ -10,6 +11,9 @@ const SS1CONST_BZKPATCH = 8;
 const SS1CONST_FRAGGRENADE = 9;
 const SS1CONST_NEEDLECLIP = 10;
 const SS1CONST_TRANQCLIP = 11;
+const SS1CONST_STDACCESS = 12;
+const SS1CONST_SKULL = 13;
+const SS1CONST_GROUP1 = 14;
 
 class SS1MobBase : HDMobBase
 {	
@@ -22,21 +26,24 @@ class SS1MobBase : HDMobBase
 	property defenceValue: defenceValue;
 	
 	
-	string lootTable[12][2];
+	string lootTable[numLoots][2];
 	override void postbeginplay() {
 		super.postbeginplay();
-		lootTable[0][0] = "none";				lootTable[0][1] = "none";
-		lootTable[1][0] = "normalBattery";		lootTable[1][1] = "BATTA0";
-		lootTable[2][0] = "Wrapper";			lootTable[2][1] = "WRAPA0";
-		lootTable[3][0] = "bevContainer";		lootTable[3][1] = "BEVCA0";
-		lootTable[4][0] = "beaker";				lootTable[4][1] = "BEAKA0";
-		lootTable[5][0] = "flask";				lootTable[5][1] = "FLSKA0";
-		lootTable[6][0] = "vial";				lootTable[6][1] = "VIALA0";
-		lootTable[7][0] = "SS1MedPatch";		lootTable[7][1] = "MEDPA0";
-		lootTable[8][0] = "SS1BerzerkPatch";	lootTable[8][1] = "BZKPA0";
-		lootTable[9][0] = "SS1FragGrenadeAmmo";	lootTable[9][1] = "FRGRF0";
-		lootTable[10][0] = "NeedleDartClip";	lootTable[10][1] = "DBOXA0";
-		lootTable[11][0] = "TranqDartClip";		lootTable[11][1] = "TBOXA0";
+		lootTable[SS1CONST_NOLOOT][0] = "none";						lootTable[SS1CONST_NOLOOT][1] = "none";
+		lootTable[SS1CONST_NBATTERY][0] = "normalBattery";			lootTable[SS1CONST_NBATTERY][1] = "BATTC0";
+		lootTable[SS1CONST_WRAPPER][0] = "Wrapper";					lootTable[SS1CONST_WRAPPER][1] = "WRAPB0";
+		lootTable[SS1CONST_POPCAN][0] = "bevContainer";				lootTable[SS1CONST_POPCAN][1] = "BEVCB0";
+		lootTable[SS1CONST_BEAKER][0] = "beaker";					lootTable[SS1CONST_BEAKER][1] = "BEAKB0";
+		lootTable[SS1CONST_FLASK][0] = "flask";						lootTable[SS1CONST_FLASK][1] = "FLSKB0";
+		lootTable[SS1CONST_VIAL][0] = "vial";						lootTable[SS1CONST_VIAL][1] = "VIALB0";
+		lootTable[SS1CONST_MEDPATCH][0] = "SS1MedPatch";			lootTable[SS1CONST_MEDPATCH][1] = "MEDPA0";
+		lootTable[SS1CONST_BZKPATCH][0] = "SS1BerzerkPatch";		lootTable[SS1CONST_BZKPATCH][1] = "BZKPA0";
+		lootTable[SS1CONST_FRAGGRENADE][0] = "SS1FragGrenadeAmmo";	lootTable[SS1CONST_FRAGGRENADE][1] = "FRGRF0";
+		lootTable[SS1CONST_NEEDLECLIP][0] = "NeedleDartClip";		lootTable[SS1CONST_NEEDLECLIP][1] = "DBOXA0";
+		lootTable[SS1CONST_TRANQCLIP][0] = "TranqDartClip";			lootTable[SS1CONST_TRANQCLIP][1] = "TBOXA0";
+		lootTable[SS1CONST_STDACCESS][0] = "standardCard";			lootTable[SS1CONST_STDACCESS][1] = "STAIA0";
+		lootTable[SS1CONST_SKULL][0] = "Skull";						lootTable[SS1CONST_SKULL][1] = "SKULB0";
+		lootTable[SS1CONST_GROUP1][0] = "Group1Card";				lootTable[SS1CONST_GROUP1][1] = "STAIB0";
 	}
 	int actualLoot[4];
 	virtual void initializeLoot(array<int> lootList, int numItems)

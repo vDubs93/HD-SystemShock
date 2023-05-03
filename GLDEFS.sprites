@@ -1,0 +1,1619 @@
+HardwareShader Sprite BRFCA0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR1G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR2H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR3H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR4H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR5F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR6F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR7H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR8G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DOR9H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR10F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR11H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR12G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR13A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR13B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR13C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR13D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR13E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR14F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR15F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR17G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR18G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR19H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20A0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20B0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20C0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20D0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20E0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20F0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20G0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+HardwareShader Sprite DR20H0
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}

@@ -59,7 +59,7 @@ class Crate : SS1MobBase
 				if(user_scale>0)
 				{
 					A_Setscale(user_scale);
-					A_SetSize(user_scale*radius,user_scale*height);
+					A_SetSize(radius,user_scale*height);
 				}
 			}
 			CRT3 A 1;
@@ -73,11 +73,28 @@ class Thermos : crate
 	{
 		//$Title "Thermos"
 		//$Sprite "THRMA0"
+		scale 0.3;
 	}
 	states
 	{
 		spawn:
 			THRM A -1;
+			wait;
+	}
+}
+
+class Briefcase : crate
+{
+	default
+	{
+		//$Title "Briefcase"
+		//$Sprite "BRFCA0"
+		scale 0.3;
+	}
+	states
+	{
+		spawn:
+			BRFC A -1;
 			wait;
 	}
 }

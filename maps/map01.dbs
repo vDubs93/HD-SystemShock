@@ -1,0 +1,266 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_SysDoomShockUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MEDICAL
+	{
+		defaultwalltexture = "SSTX_039";
+		overridemiddletexture = false;
+		defaultceiltexture = "SSTX_198";
+		overrideceiltexture = false;
+		custombrightness = 196;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+		}
+		viewpositiony = 546.8393f;
+		viewpositionx = 396.0186f;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		customceilheight = 128;
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0;
+			backscaley = 100;
+			gridrotate = 0;
+			backscalex = 100;
+			gridoriginx = 0;
+			gridsize = 32;
+			background = "";
+			backoffsety = 0;
+		}
+		viewscale = 3.653382f;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		defaulttoptexture = "SSTX_039";
+		overridebottomtexture = false;
+		defaultbottomtexture = "SSTX_039";
+		defaultfloortexture = "SSTX_036";
+		overrideceilheight = false;
+		overridebrightness = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		overridefloorheight = false;
+		overridetoptexture = false;
+		uselongtexturenames = false;
+		overridefloortexture = false;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				user_managed_3d_floor = 3;
+			}
+			
+			thing
+			{
+				user_scale = 1;
+				user_loot1 = 0;
+				user_loot2 = 0;
+				user_loot3 = 2;
+				user_loot4 = 2;
+				user_switchtype = 0;
+				user_iconindex = 0;
+				user_height = 0;
+				user_radius = 0;
+				user_width = 0;
+				user_startstate = 2;
+				user_arg1 = 0;
+				user_arg2 = 0;
+				user_arg3 = 0;
+				user_arg4 = 0;
+				user_wait = 0;
+				user_lockedmessage = 2;
+				user_clearance = 0;
+				user_locked = 3;
+				user_ammo = 0;
+				user_dir = 0;
+				user_topheight = 0;
+				user_touchactivate = 3;
+				user_direction = 0;
+				user_bottomheight = 0;
+				user_onlyonce = 3;
+				user_code = 2;
+			}
+		}
+	}
+	
+	MAP01
+	{
+		defaultwalltexture = "SSTX_039";
+		overridemiddletexture = false;
+		defaultceiltexture = "SSTX_198";
+		overrideceiltexture = false;
+		custombrightness = 196;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+		}
+		viewpositiony = -243.3772f;
+		viewpositionx = -531.1031f;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		customceilheight = 128;
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0;
+			backscaley = 100;
+			gridrotate = 0;
+			backscalex = 100;
+			gridoriginx = 0;
+			gridsize = 8;
+			background = "";
+			backoffsety = 0;
+		}
+		viewscale = 1.662894f;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		defaulttoptexture = "SSTX_039";
+		overridebottomtexture = false;
+		defaultbottomtexture = "SSTX_039";
+		defaultfloortexture = "SSTX_036";
+		overrideceilheight = false;
+		overridebrightness = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		overridefloorheight = false;
+		overridetoptexture = false;
+		uselongtexturenames = false;
+		overridefloortexture = false;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		selectiongroups
+		{
+			
+			9
+			{
+				things = "497";
+			}
+		}
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				user_managed_3d_floor = 3;
+			}
+			
+			thing
+			{
+				user_scale = 1;
+				user_loot1 = 0;
+				user_loot2 = 0;
+				user_loot3 = 2;
+				user_loot4 = 2;
+				user_switchtype = 0;
+				user_iconindex = 0;
+				user_height = 0;
+				user_radius = 0;
+				user_width = 0;
+				user_startstate = 2;
+				user_puzzle = 2;
+				user_arg1 = 0;
+				user_arg2 = 0;
+				user_arg3 = 0;
+				user_arg4 = 0;
+				user_wait = 0;
+				user_lockedmessage = 2;
+				user_clearance = 0;
+				user_locked = 3;
+				user_startframe = 0;
+				user_ammo = 0;
+				user_direction = 0;
+				user_setceiling = 3;
+				user_topheight = 0;
+				user_touchactivate = 3;
+				user_light = 3;
+				user_bottomheight = 0;
+				user_onlyonce = 3;
+				user_code = 2;
+			}
+		}
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 720;
+				firstvisibleline = 40;
+				activetab = true;
+			}
+		}
+	}
+}

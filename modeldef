@@ -93,3 +93,24 @@ model cyberToggle
 	frameIndex BATT A 0 0
 	frameIndex BATT B 0 1
 }
+
+Model ControlPedestal
+{
+	path "models/ControlPedestal"
+	Model 0 "ControlPedestal.obj"
+	FrameIndex PLAY A 0 0
+}
+
+Model slab
+{
+	path "models/slab"
+	Model 0 "slab.obj"
+	FrameIndex BATT A 0 0
+}
+
+Model xray
+{
+	path "models/xray"
+	Model 0 "xray.obj"
+	FrameIndex BATT A 0 0
+}

@@ -2,11 +2,14 @@ enum SparqProperties
 	{
 		SB_OverHeat,
 		SB_PowerLevel,
-		SB_HeatLevel
+		SB_HeatLevel,
+		SB_OVERLOAD
 	};
-Class SS1SparqBeam : SS1Weapon
+Class SS1SparqBeam : SS1Handgun
 {
 	int curFrame;
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 	default
 	{
 		//$category "System Shock/Weapons"
@@ -38,14 +41,15 @@ Class SS1SparqBeam : SS1Weapon
 	override void DrawHUDStuff(HDStatusBar sb, HDWeapon hdw, HDPlayerPawn hpl)
 	{
 		sb.drawImage("SPRQICON", (-84, -3), sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM, scale: (0.5, 0.5));
-		if (weaponstatus[SB_PowerLevel] == 4){
-			HUDFont font = HUDFont.Create(smallfont, 0, false);
-			sb.drawstring(font, "OVER", (-46, -16),sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM);
-		}
+		HUDFont font = HUDFont.Create(smallfont, 0, false);
+		int percent = min(floor(((weaponStatus[SB_PowerLevel]+1)/3000.)*100)+1, 100);
+		if (weaponstatus[SB_OVERLOAD]){
+			
+			sb.drawstring(font, "OVER", (-38, -16),sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM,0,1,-1,4,(0.5,0.5));
+		} else sb.drawString(font, ""..percent, (-36, -16),sb.DI_SCREEN_CENTER_BOTTOM | sb.DI_ITEM_CENTER_BOTTOM,0,1,-1,4,(0.5,0.5));
 		
-		sb.drawwepnum(weaponStatus[SB_PowerLevel], 3);
+		sb.drawwepnum(weaponStatus[SB_PowerLevel]+100, 3000, -16, -6, true);
 		sb.drawwepnum(weaponStatus[SB_HeatLevel], 90, -16, -8, true);
-		
 	}
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
@@ -73,24 +77,31 @@ Class SS1SparqBeam : SS1Weapon
 			scale:scc
 		);
 	}
-	override void postbeginplay()
+	override void initializewepstats()
 	{
-		super.postbeginplay();
-		weaponStatus[SB_PowerLevel] = 1;
+		weaponStatus[SB_PowerLevel] = random(0,3000);
 		weaponStatus[SB_Overheat] = 0;
 		weaponStatus[SB_HeatLevel] = 0;
-		A_OverlayFlags(5, PSPF_ADDBOB, true);
+	}
+	override inventory CreateTossable(int amt)
+	{
+		owner.A_StopSound(19);
+		return super.createTossable(amt);
+		
 	}
 	override void tick()
 	{
 		super.tick();
-		if (weaponStatus[SB_HeatLevel] >=100 && !weaponstatus[SB_Overheat]){
+		if (weaponStatus[SB_OVERLOAD]){
+			if (owner)
+				owner.A_StartSound("sparqbeam/overload", 19, CHANF_LOOPING | CHANF_NOSTOP,1, ATTN_NORM, 1.3);
+			else A_StopSound(19);
+		}
+		if (weaponStatus[SB_HeatLevel] >= 100 && !weaponstatus[SB_Overheat]){
 			weaponStatus[SB_Overheat] = 1;
 			owner.A_StartSound("weapon/overheat", CHAN_AUTO, CHANF_OVERLAP);
-			
-		}
-		if (weaponStatus[SB_HeatLevel] == 95 && weaponStatus[SB_Overheat])
 			owner.A_StartSound("weapon/error", CHAN_AUTO, CHANF_OVERLAP);
+		}
 		if (weaponStatus[SB_Overheat]){
 			drainHeat(SB_HeatLevel);
 			if (weaponStatus[SB_HeatLevel] == 0){
@@ -102,40 +113,39 @@ Class SS1SparqBeam : SS1Weapon
 	}
 	action void A_SparqAttack(int dmg, string hue, int duration) {
 		FLineTraceData data;
-		LineTrace(angle, 10000, pitch, TRF_NOSKY, offsetz: height, data: data);
+		LineTrace(angle, 2048, pitch, TRF_NOSKY, offsetz: height, data: data);
 		Actor pActor = data.hitactor;
 		if (pActor) {
-			if (invoker.penetration <  SS1MobBase(pActor).armorValue) {
-				console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
-				dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
-			}
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
-			int defenceValue = SS1MobBase(pActor).defenceValue;
-			int modifier;
-			if (invoker.offenseValue > defenceValue) {
-
-				modifier = (invoker.offenseValue - defenceValue) + invoker.random_bell_modifier();
-				if (hd_debug)
-					console.printf("Chance for critical hit, modifier is %d", modifier);
-				if (modifier < -3) {
-					dmg /= (modifier+3)^2;
-				} else if (modifier > 3) {
-					if (modifier > 12)
-						modifier = 12;
-					dmg = (dmg * modifier)/3;
-					if (hd_debug)
-						console.printf(string.format("Critical Hit for %d damage",dmg)); 
+			if (pActor is 'SS1MobBase'){
+				if (invoker.penetration <  SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
 				}
-			} else if(hd_debug)
-				console.printf("No chance for critical hit");
-			dmg *= frandom(0.9, 1.1);	
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (invoker.offenseValue > defenceValue) {
+	
+					modifier = (invoker.offenseValue - defenceValue) + invoker.random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+			}
+			dmg *= frandom(0.9, 1.1);
 			if (hd_debug)
 				console.printf("final damage is "..dmg..".");
-			dmg *= frandom(0.9, 1.1);
 			pActor.damageMobj(self, self, dmg, "Beam");
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
 		}
 		A_RailAttack(0, 0, 0, "", hue, RGF_SILENT | RGF_NOPIERCING | RGF_FULLBRIGHT, 0, "", 0, 0, 0, duration, 0.1, 0.0);
 	}
@@ -146,26 +156,21 @@ Class SS1SparqBeam : SS1Weapon
 			wait;
 		Select0:
 			SPRQ A 0{
-					if (invoker.weaponStatus[SB_PowerLevel] < 4){
-						invoker.setWeaponFrame(invoker.weaponStatus[SB_PowerLevel]-1);}
+					if (!invoker.weaponStatus[SB_OVERLOAD] < 4){
+						invoker.setWeaponFrame(0);}
 			}
 			goto select0small;
 		Deselect0:
 			SPRQ A 0{
-					if (invoker.weaponStatus[SB_PowerLevel] < 4){
-						invoker.setWeaponFrame(invoker.weaponStatus[SB_PowerLevel]-1);}
+					if (!invoker.weaponStatus[SB_OVERLOAD] < 4){
+						invoker.setWeaponFrame(0);}
 			}
 			goto deselect0small;
 		ready:
 			SPRQ A 1 {
 				A_WeaponReady(WRF_ALL);
 				if (invoker.weaponstatus[sb_overheat] == 0) {
-					if (invoker.weaponStatus[SB_PowerLevel] < 4){
-						invoker.setWeaponFrame(invoker.weaponStatus[SB_PowerLevel]-1);
-						A_StopSound(19);
-					}
-					else {
-						A_StartSound("sparqbeam/overload", 19, CHANF_LOOPING,1, ATTN_NORM, 1.3);
+					if (invoker.weaponStatus[SB_OVERLOAD]){
 						if (gametic % 4 == 0)
 							invoker.curFrame = 0;
 						else if (gametic % 3 == 0)
@@ -177,7 +182,7 @@ Class SS1SparqBeam : SS1Weapon
 						invoker.setWeaponFrame(invoker.curFrame);
 					}
 				} else {
-					invoker.setWeaponFrame(3);
+					invoker.setWeaponFrame(2);
 					A_StopSound(19);
 				}
 			}
@@ -185,71 +190,62 @@ Class SS1SparqBeam : SS1Weapon
 		fire:
 			#### A 0 {
 				if (Hacker(invoker.owner).internalCharge > 0 && ! invoker.weaponstatus[SB_Overheat]) {
-					switch (invoker.weaponStatus[SB_PowerLevel]) {
-						case 1:
-							return state(resolveState("shoot1"));
-							break;
-						case 2:
-							return state(resolveState("shoot2"));
-							break;
-						case 3:
-							return state(resolveState("shoot3"));
-							break;
-					}
-					return state(resolveState("shoot4"));
+					return state(resolveState("shoot1"));
 				}
 				else return state(resolveState("dryfire"));
 			}
 			goto Ready;
 		shoot1:
 			SPQF A 1 {
-				A_SparqAttack(6, "04aebb", 10);
-				
-				A_StartSound("sparqBeam/fire");
-				Hacker(invoker.owner).internalCharge -= 2;
-				invoker.weaponStatus[SB_HeatLevel] += 20;
+				if (invoker.weaponStatus[SB_OVERLOAD] && Hacker(invoker.owner).internalCharge >= 24) {
+					Hacker(invoker.owner).internalCharge -= 24;
+					Hacker(invoker.owner).energyUse += 24;
+					A_SparqAttack(60, "34deeb", 40);
+					A_StartSound("sparqBeam/fire");
+					A_StartSound("weapon/fullcharge");
+					invoker.owner.A_SetPitch(invoker.owner.pitch-5, SPF_INTERPOLATE); 
+					invoker.weaponStatus[SB_HeatLevel] = 100;
+					invoker.weaponStatus[SB_OVERLOAD] = 0;
+					Hacker(invoker.owner).energyUse -= 24;
+					return state(resolveState("overloadfinish"));
+				}
+				else {
+					if (invoker.weaponStatus[SB_OVERLOAD]) {
+						invoker.weaponStatus[SB_OVERLOAD] = 0;
+					}
+					while (Hacker(invoker.owner).internalCharge <= 8 * (1/(31.-(invoker.weaponstatus[SB_POWERLEVEL]/100.)))
+							&& Hacker(invoker.owner).internalCharge > 0 && invoker.weaponStatus[SB_PowerLevel] > 0){
+						if (Hacker(invoker.owner).internalCharge <= 8 * (1/(31.-(invoker.weaponstatus[SB_POWERLEVEL]/100.)))	
+							&& Hacker(invoker.owner).internalCharge > 0)
+							invoker.weaponstatus[SB_POWERLEVEL]--;
+						else break;
+					}
+					if (Hacker(invoker.owner).internalCharge > 0) {
+						float slope = 1/5.;
+						int powerdraw = 2 + slope * (invoker.weaponstatus[SB_POWERLEVEL]/100);
+						Hacker(invoker.owner).energyUse += powerdraw;
+						Hacker(invoker.owner).internalCharge -= powerdraw;
+						console.printf(string.format("%d", invoker.weaponstatus[SB_POWERLEVEL]/100.));
+						console.printf(string.format("%f", powerdraw));
+						invoker.weaponStatus[SB_OVERLOAD] = 0;
+						invoker.weaponStatus[SB_HeatLevel] += 20;
+						A_SparqAttack((invoker.weaponstatus[SB_POWERLEVEL]/100)+6, "04aebb", 10);
+						A_StartSound("sparqBeam/fire");
+						Hacker(invoker.owner).energyUse -= powerdraw;
+					} else return state(resolveState("dryfire"));
+				}
+				return state(resolveState("shootFinish"));
 			}
+		shootFinish:
 			SPQF BCDE 1;
 			SPQF F 2;
 			goto ready;
-		shoot2:
-			SPQF G 1 {
-				A_SparqAttack(18, "14beca", 17);
-				
-				A_StartSound("sparqBeam/fire", CHAN_AUTO, 0, 1, ATTN_NORM, 0.9);
-				Hacker(invoker.owner).internalCharge -= 4;
-				invoker.weaponStatus[SB_HeatLevel] += 35;
-			}
-			SPQF HIJK 1;
-			SPQF L 2;
+		overloadFinish:
+			SPQF R 4 {A_SetCrosshair(21);
+					A_WeaponOffset(0,38);
+					}
+			#### # 4 A_WeaponOffset(0,6, WOF_ADD);
 			goto ready;
-		shoot3:
-			SPQF M 1 {
-				A_SparqAttack(36, "24cedb", 25);
-				A_StartSound("sparqBeam/fire", CHAN_AUTO, 0, 1, ATTN_NORM, 0.8);
-				A_StartSound("stungun/zap", CHAN_AUTO, 0, 0.25);
-				Hacker(invoker.owner).internalCharge -= 6;
-				invoker.weaponStatus[SB_HeatLevel] += 50;
-			}
-			SPQF NOPQ 1;
-			SPQF R 2;
-			Goto Ready;
-				
-		shoot4:
-			SPQF A 1 {
-				A_SparqAttack(60, "34deeb", 40);
-				A_StartSound("sparqBeam/fire");
-				A_StartSound("weapon/fullcharge");
-				invoker.owner.A_SetPitch(invoker.owner.pitch-5, SPF_INTERPOLATE); 
-				Hacker(invoker.owner).internalCharge -= 8;
-				invoker.weaponStatus[SB_HeatLevel] = 100;
-			}
-			SPQF HODK 1;
-			SPQF F 2 {
-				invoker.weaponStatus[SB_PowerLevel] = 1;
-
-			}
-			Goto Ready;
 		dryFire:
 			SPRQ D 1 {
 					A_WeaponOffset(0, -2, WOF_ADD);
@@ -261,13 +257,16 @@ Class SS1SparqBeam : SS1Weapon
 			#### # 1 offset(1,38);
 			#### # 2 offset(2,42);
 			#### # 3 offset(3,46) { 
-				if (invoker.weaponStatus[SB_PowerLevel] < 4)
-					invoker.weaponStatus[SB_PowerLevel]++;
-				else
-					invoker.weaponStatus[SB_PowerLevel] = 1;
+				invoker.weaponstatus[SB_OVERLOAD] = !invoker.weaponstatus[SB_OVERLOAD];
 				A_StartSound("weapon/toggle");
+				
 			}
+			
 			goto changeFinish;
+		firemode:
+			---- A 1 A_PowerLevelReady();
+			---- A 0 A_JumpIf(pressingfiremode(),"firemode");
+			goto readyend;
 		user4:
 		unload:
 			SPRQ D 1 offset(0,34) A_SetCrosshair(21);
@@ -284,7 +283,25 @@ Class SS1SparqBeam : SS1Weapon
 			#### # 2 offset(3,46);
 			#### # 1 offset(2,42);
 			#### # 1 offset(2,38);
-			#### # 1 offset(1,34);
+			#### # 1 offset(1,34) {if (!invoker.weaponStatus[SB_OVERLOAD]) A_StopSound(19);}
 			goto ready;
+	}
+	action void A_PowerLevelReady(){
+		A_WeaponReady(WRF_NONE);
+		int iab=invoker.weaponStatus[SB_PowerLevel];
+		int cab=0;
+		int mmy=-GetMouseY(true);
+		if(justpressed(BT_ATTACK))cab=-100;
+		else if(justpressed(BT_ALTATTACK))cab=100;
+		else if(mmy){
+			cab=-mmy;
+			if(abs(cab)>(1<<1))cab>>=1;else cab=clamp(cab,-1,1);
+		}
+		iab+=cab;
+		/*if(iab<1000){
+			if(cab>0)iab=1000;
+			else iab=0;
+		}*/
+		invoker.weaponStatus[SB_PowerLevel]=clamp(iab,0,3000);
 	}
 }

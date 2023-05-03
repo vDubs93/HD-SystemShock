@@ -14,33 +14,38 @@ class HDB_NDart:SS1SlowProjectile{
 		LineTrace(angle, 56, pitch, TRF_NOSKY, offsetz: height, data: data);
 		Actor pActor = data.hitactor;
 		if (pActor) {
-			if (penetration <  SS1MobBase(pActor).armorValue) {
-				console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
-				dmg -= (SS1MobBase(pActor).armorValue - penetration);
-			}
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
-			int defenceValue = SS1MobBase(pActor).defenceValue;
-			int modifier;
-			if (offenseValue > defenceValue) {
-
-				modifier = (offenseValue - defenceValue) + random_bell_modifier();
-				if (hd_debug)
-					console.printf("Chance for critical hit, modifier is %d", modifier);
-				if (modifier < -3) {
-					dmg /= (modifier+3)^2;
-				} else if (modifier > 3) {
-					if (modifier > 12)
-						modifier = 12;
-					dmg = (dmg * modifier)/3;
-					if (hd_debug)
-						console.printf(string.format("Critical Hit for %d damage",dmg)); 
+			if (pActor is 'SS1MobBase'){
+				if (penetration <  SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - penetration);
 				}
-			} else if(hd_debug)
-				console.printf("No chance for critical hit");
-			dmg *= frandom(0.9, 1.1);	
-			if (hd_debug)
-				console.printf("final damage is "..dmg..".");
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (offenseValue > defenceValue) {
+	
+					modifier = (offenseValue - defenceValue) + random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+				dmg *= frandom(0.9, 1.1);	
+				if (hd_debug)
+					console.printf("final damage is "..dmg..".");
+			} else {
+				setStateLabel("disappear");
+				dmg = 1;
+			}
 			pActor.damageMobj(self,HDPlayerPawn(self),int(dmg),"Dart");
 			class<actor> hitblood;
 			bool noblood = pActor.bNoBlood;
@@ -76,9 +81,9 @@ class HDB_NDart:SS1SlowProjectile{
 
 		death:
 			ONED B -1;
-			stop;
+			wait;
 		disappear:
-			TNT1 A 0;
+			TNT1 AA 1;
 			stop;
 	}
 }
@@ -99,31 +104,33 @@ class HDB_TDart:SS1SlowProjectile{
 		LineTrace(angle, 56, pitch, TRF_NOSKY, offsetz: height, data: data);
 		Actor pActor = data.hitActor;
 		if (pActor) {
-			if (penetration <  SS1MobBase(pActor).armorValue) {
-				console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
-				dmg -= (SS1MobBase(pActor).armorValue - penetration);
-			}
-			if (hd_debug)
-				console.printf("initial damage is "..dmg..".");
-			int defenceValue = SS1MobBase(pActor).defenceValue;
-			int modifier;
-			if (offenseValue > defenceValue) {
-
-				modifier = (offenseValue - defenceValue) + random_bell_modifier();
-				if (hd_debug)
-					console.printf("Chance for critical hit, modifier is %d", modifier);
-				if (modifier < -3) {
-					dmg /= (modifier+3)^2;
-				} else if (modifier > 3) {
-					if (modifier > 12)
-						modifier = 12;
-					dmg = (dmg * modifier)/3;
-					if (hd_debug)
-						console.printf(string.format("Critical Hit for %d damage",dmg)); 
+			if (pActor is 'SS1MobBase'){
+				if (penetration <  SS1MobBase(pActor).armorValue) {
+					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - penetration);
+					dmg -= (SS1MobBase(pActor).armorValue - penetration);
 				}
-			} else if(hd_debug)
-				console.printf("No chance for critical hit");
-			dmg *= frandom(0.9, 1.1);	
+				if (hd_debug)
+					console.printf("initial damage is "..dmg..".");
+				int defenceValue = SS1MobBase(pActor).defenceValue;
+				int modifier;
+				if (offenseValue > defenceValue) {
+	
+					modifier = (offenseValue - defenceValue) + random_bell_modifier();
+					if (hd_debug)
+						console.printf("Chance for critical hit, modifier is %d", modifier);
+					if (modifier < -3) {
+						dmg /= (modifier+3)^2;
+					} else if (modifier > 3) {
+						if (modifier > 12)
+							modifier = 12;
+						dmg = (dmg * modifier)/3;
+						if (hd_debug)
+							console.printf(string.format("Critical Hit for %d damage",dmg)); 
+					}
+				} else if(hd_debug)
+					console.printf("No chance for critical hit");
+				dmg *= frandom(0.9, 1.1);	
+			} else dmg = 1;
 			pActor.damageMobj(self,HDPlayerPawn(self),int(dmg),"Tranq");
 			if (CanTranq(pActor)) {
 				pActor.setStateLabel("Pain");
@@ -157,9 +164,9 @@ class HDB_TDart:SS1SlowProjectile{
 
 		death:
 			ONET B -1;
-			stop;
+			wait;
 		disappear:
-			TNT1 A 0;
+			TNT1 AA 1;
 			stop;
 	}
 }

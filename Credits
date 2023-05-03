@@ -6,6 +6,26 @@
 
 Saturn skybox made with SpaceEngine https://store.steampowered.com/app/314650/SpaceEngine/
 
+*************************************************
+*  System shock textures original credits file: *
+*************************************************
+
+Information:
+Source: System Shock
+Count: ~330
+Palette: Truecolor PNGs
+Format: TX_ markers
+Anims/Switches: ZDoom compatible
+Description: Textures from System Shock
+
+Credits:
+Conversion: Ceeb
+Author: Looking Glass
+Submitted: Ceeb
+
+Description:
+Every texture from System Shock
+
 ********************************************
 *                                          *
 *              Sound Effects               *
@@ -29,11 +49,17 @@ Battery Usage https://freesound.org/people/Jofae/sounds/367125/
 Mag-pulse firing sound https://freesound.org/people/michael_grinnell/sounds/512469/, original magpulse sfx
 Mag-pulse hit sound https://freesound.org/people/Snapper4298/sounds/180007/, original magpulse sfx
 Magnum Firing sound https://freesound.org/people/morganpurkis/sounds/369782/ mixed with original SS1 Magnum sound
-
 Ladder sounds from https://freesound.org/people/Eelke/sounds/462598/
 
+********************************************
+*                                          *
+*              Other stuff                 *
+*                                          *
+********************************************
+
+Sparqbeam power level adjustment idea from @Redguy631
 
 6dof code by dodopod, pulled from https://gitlab.com/dodopod/zscript-player-powers/
 
 All sounds not listed here were either pulled from the original game or made from scratch
-Edited by VDubs
+Edited by vDubs93

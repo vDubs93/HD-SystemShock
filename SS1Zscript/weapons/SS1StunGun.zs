@@ -7,6 +7,9 @@ Class SS1StunGun : SS1Weapon
 {
 	default
 	{
+		//$Category "System Shock/Weapons"
+		//$Title "DH-07 Stun Gun"
+		//$Sprite "STGPA0"
 		+WEAPON.NOAUTOFIRE;
 		weapon.SlotNumber 2;
 		hdweapon.refid "stg";
@@ -45,7 +48,6 @@ Class SS1StunGun : SS1Weapon
 			if (invoker.weaponStatus[SG_PowerLevel] == 3) {
 				if (hpl.InternalCharge >= 8) {
 					A_StartSound("stungun/FullCharge", CHAN_AUTO, CHANF_OVERLAP);
-					invoker.owner.A_SetPitch(invoker.owner.pitch-5, SPF_INTERPOLATE); 
 				} else if (hpl.InternalCharge >= 2) invoker.weaponStatus[SG_powerlevel] = 2;
 			}
 			if (invoker.weaponStatus[SG_PowerLevel] == 2) {
@@ -64,9 +66,12 @@ Class SS1StunGun : SS1Weapon
 					invoker.barrellength-HDCONST_SHOULDERTORADIUS
 				)
 			),ALLOW_REPLACE));
+
 			str.angle=angle;str.target=self;str.master=self;
 			str.pitch=pitch;
 			str.stunLevel = invoker.weaponStatus[SG_PowerLevel];
+			if (invoker.weaponStatus[SG_PowerLevel] == 3)
+				invoker.owner.A_SetPitch(invoker.owner.pitch-5, SPF_INTERPOLATE); 
 			return true;
 		} else {
 			return false;
@@ -197,9 +202,11 @@ Class SS1StunGun : SS1Weapon
 class HDB_StunRay : SS1SlowProjectile
 {
 	int stunLevel;
+	float childRadius;
 	override void postbeginplay(){
 		super.postbeginplay();
 		A_ChangeVelocity(speed*cos(pitch),0,speed*sin(-pitch),CVF_RELATIVE);
+		childRadius = 0;
 	}
 	override void ExplodeSlowMissile(){
 		switch(stunLevel){
@@ -242,11 +249,17 @@ class HDB_StunRay : SS1SlowProjectile
 			SS1MobBase(o).bISSTUNNABLE
 			);
 	}
+	override void tick()
+	{
+		super.tick();
+		childRadius+= childRadius < 3?0.1:0;
+		A_SetScale(0.15*(childRadius/3));
+	}
 	default
 	{
 		+NOGRAVITY;
 		mass 0;
-		speed 9;//475;
+		speed 4;//475;
 		accuracy 300;
 		//stamina 100;
 		DamageType "Stun";
@@ -257,12 +270,60 @@ class HDB_StunRay : SS1SlowProjectile
 	states
 	{
 		Spawn:
-			STNR A 1 { roll += 30; }
+			TNT1 A 1 bright {
+					roll += 5;
+					for (int i = 0; i < 5; i+=1){
+					bool spawned;
+					Actor zap;
+					for (int j = 0; j < 360; j+=(360/stunLevel)){
+						int toAdd = stunLevel>1?j:0;
+						childRadius = stunLevel>1?childRadius:0;
+						toAdd += roll + i;
+						[spawned, zap] = A_SpawnItemEx("Shotzap", 0, i, 0, 0, 0, 0, 90, SXF_SETMASTER);
+						zap.pitch = toAdd + j;
+						if (stunLevel > 1){
+							[spawned, zap] = A_SpawnItemEx("Shotzap", childRadius * cos(toAdd), i, childRadius * sin(0-toAdd), 0, 0, 0, 90, SXF_SETMASTER);
+							zap.pitch = toAdd + j;
+						}
+					}
+				}
+			}
 			wait;
 		Crash:
 		Death:
-			SPRK ABC 2;
+			SPRK ABC 2 bright;
 			TNT1 A 0;
 			stop;
 	}
+}
+class shotzap : Actor
+{
+	default
+	{
+		speed 0;
+		+FLATSPRITE;
+		+NOGRAVITY;
+		+NOINTERACTION;
+		-SOLID;
+		damagetype "none";
+		mass 0;
+		scale 0.2;
+	}
+	override void postbeginplay(){
+		super.postbeginplay();
+		A_ChangeVelocity(speed*cos(pitch),0,speed*sin(-pitch),CVF_RELATIVE);
+	}
+	states
+	{
+		spawn:
+			STRC ABCD 1 bright {
+						frame = random(0,3);
+						A_Fadeout(0.05);
+						}
+			loop;
+		death:
+			TNT1 A 0;
+			stop;
+	}
+	
 }

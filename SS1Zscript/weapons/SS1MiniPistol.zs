@@ -8,9 +8,16 @@ Enum MiniPistolStatus
 	
 	
 }
-class ML41Minipistol : SS1Weapon
+class ML41Minipistol : SS1Handgun
 {
 	int nextAmmoType;
+	override void failedpickupunload()
+	{
+		int MType = weaponStatus[MP_MAGTYPE];
+
+		class<HDMagAmmo> WhichMag = MType == 0 ? 'MPStandardMag' : 'MPTeflonMag';
+		failedpickupunloadmag(MP_MAG,WhichMag);
+	}
 	default
 	{
 		//$category "System Shock/Weapons"
@@ -22,6 +29,7 @@ class ML41Minipistol : SS1Weapon
 		hdweapon.refid "mlp";
 		Tag "ML-41 MiniPistol";
 		Inventory.PickupMessage "ML-41 9mm MiniPistol. Does the job";
+		SS1Weapon.currAmmo 15;
 	}
 	override string gethelptext(){
 		return
@@ -266,8 +274,18 @@ class ML41Minipistol : SS1Weapon
 	
 		}
 	override void initializewepstats(bool idfa){
-		weaponstatus[MP_MAG]=15;
 		weaponstatus[MP_MAGTYPE]=0;
+		switch(user_ammo){
+			case -1:
+				weaponstatus[MP_MAG]=0;
+				break;
+			case 0:
+				weaponstatus[MP_MAG]=15;
+				break;
+			default:
+				weaponstatus[MP_MAG]=user_ammo;
+		}
+		
 	}
 }
 

@@ -1,0 +1,71 @@
+uniform float timer;
+
+vec4 brighten(vec4 c, vec4 light)
+{
+	c *= 255;
+	
+	c.rgb *= length(c.rgb)/32;
+	c.rgb -= length(light.rgb);
+	return c/255;
+}
+
+vec4 Process(vec4 color)
+{
+	vec4 light = color;
+	vec2 pos = gl_TexCoord[0].st;
+	vec4 c = getTexel(pos);
+	if (c.a != 1)
+		return vec4(0,0,0,0);
+	vec4 indexedColor = c;
+	for (int i = 0; i < 10; i+=1){
+		vec4 palColor = texture(pal1, vec2((i+1)/10.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2(mod(i/10.0+(timer/6), 10), 0);
+			indexedColor = texture(pal1, index);
+			return indexedColor;
+		}
+	}
+	for (int i = 0; i < 10; i+=1){
+		vec4 palColor = texture(pal2, vec2((i+1)/10.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2((i/10.0) + (timer /3.5), 0);
+			vec4 indexedColor = texture(pal2, index);
+			return indexedColor;
+		}
+	}
+	for (int i = 0; i < 10; i+=1){
+		vec4 palColor = texture(pal3, vec2((i+1)/10.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2((i/10.0) + (timer/1.5), 0);
+			vec4 indexedColor = texture(pal3, index);
+			return indexedColor;
+		}
+	}
+	for (int i = 0; i < 6; i+=1){
+		vec4 palColor = texture(pal4, vec2((i+1)/6.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2((i/6.0) + (timer/9), 0);
+			vec4 indexedColor = texture(pal4, index);
+			return indexedColor;
+		}
+	}
+	for (int i = 0; i < 6; i+=1){
+		vec4 palColor = texture(pal5, vec2((i+1)/6.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2((i/6.0) + (timer/7.45), 0);
+			vec4 indexedColor = texture(pal5, index);
+			return indexedColor;
+		}
+	}
+	for (int i = 0; i < 10; i+=1){
+		vec4 palColor = texture(pal6, vec2((i+1)/10.0,0));
+		if(indexedColor.rgb == palColor.rgb){
+			vec2 index = vec2((i/10.0) + (timer/5.15), 0);
+			vec4 indexedColor = texture(pal6, index);
+			return indexedColor;
+		}
+	}
+	return indexedColor;
+}
+
+

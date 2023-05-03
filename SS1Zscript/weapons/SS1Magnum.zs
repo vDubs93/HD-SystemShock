@@ -1,27 +1,43 @@
 
-Enum MagnumStatus
-{
-	MGNM_UNLOADED,
-	MGNM_JUSTUNLOAD=4,
-	MGNM_MAGTYPE,
-	MGNM_MAG
-	
-	
-}
+enum MagnumStatus {
+	MGNM_UNLOADED=1,
+	MGNM_JUSTUNLOAD=2,
+	MGNM_FLAGS=0,
+	MGNM_MAGTYPE=1,
+	MGNM_MAG=2,
+};
 class Magnum2100 : SS1Weapon
 {
 	int nextAmmoType;
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
+	override void postbeginplay()
+	{
+		super.postbeginplay();
+		
+
+	}
+	
+	override void failedpickupunload()
+	{
+		int MType = weaponStatus[MGNM_MAGTYPE];
+
+		class<HDMagAmmo> WhichMag = MType == 0 ? 'MGHollowMag' : 'MGSlugMag';
+		failedpickupunloadmag(MGNM_MAG,WhichMag);
+	}
+	
 	default
 	{
 		//$category "System Shock/Weapons"
 		//$Title "Magnum 2100"
-		//$Sprite "MNPPA0"
+		//$Sprite "MGPKA0"
 		weapon.slotnumber 2;
 		+WEAPON.NOAUTOFIRE;
 		scale 0.15;
 		hdweapon.refid "mgn";
 		Tag "Magnum 2100";
 		Inventory.PickupMessage "Magnum 2100 Pistol.  Comes with a kick!";
+		SS1Weapon.currAmmo 12;
 	}
 	override string gethelptext(){
 		return
@@ -278,7 +294,17 @@ class Magnum2100 : SS1Weapon
 			goto nope;
 		}
 	override void initializewepstats(bool idfa){
-		weaponstatus[MGNM_MAG]=12;
+		switch(user_ammo){
+			case -1:
+				weaponstatus[MGNM_MAG]=0;
+				break;
+			case 0:
+				weaponstatus[MGNM_MAG]=12;
+				break;
+			default:
+				weaponstatus[MGNM_MAG]=user_ammo;
+		}
+		
 		weaponstatus[MGNM_MAGTYPE]=0;
 	}
 }
@@ -298,10 +324,11 @@ class MGHollowMag:HDMagAmmo {
 		inventory.pickupmessage "Picked up a hollow-point Magazine";
 		scale 0.3;
 		inventory.maxamount 100;
+		
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite;
-		if(thismagamt>12)magsprite="MGHMA0";
+		if(thismagamt>=10)magsprite="MGHMA0";
 		else magsprite="MGHMB0";
 		return magsprite,"MGNRA0","MGHollowRound",.4;
 	}
@@ -310,8 +337,11 @@ class MGHollowMag:HDMagAmmo {
 	}
 	states(actor){
 	spawn:
-		MGHM A -1 nodelay;
-		stop;
+		MGHM AB -1 nodelay{
+			int amt=mags[0];
+			if(amt>9)frame=0;
+			else if(amt>0)frame=1;
+		}stop;
 	spawnempty:
 		MGHM B -1{
 			brollsprite=true;brollcenter=true;
@@ -377,9 +407,9 @@ class MGSlugMag:HDMagAmmo {
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite;
-		if(thismagamt>12)magsprite="MGSMA0";
+		if(thismagamt>=10)magsprite="MGSMA0";
 		else magsprite="MGSMB0";
-		return magsprite,"MGNRA0","MGSlugRound",.4;
+		return magsprite,"MGSRA0","MGSlugRound",.4;
 	}
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("SS1Magnum");
@@ -388,7 +418,7 @@ class MGSlugMag:HDMagAmmo {
 	spawn:
 		MGSM AB -1 nodelay{
 			int amt=mags[0];
-			if(amt>14)frame=0;
+			if(amt>9)frame=0;
 			else if(amt>0)frame=1;
 		}stop;
 	spawnempty:

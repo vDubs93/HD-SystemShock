@@ -1,5 +1,10 @@
 class SS1DartGun : SS1Weapon {
 	int nextAmmoType;
+	
+	override void postbeginplay()
+	{
+		super.postbeginplay();
+	}
 	override void failedpickupunload()
 	{
 		int MType = weaponStatus[DG_CurrAmmoType];
@@ -7,7 +12,8 @@ class SS1DartGun : SS1Weapon {
 		class<HDMagAmmo> WhichMag = MType == 0 ? 'needleDartClip' : 'tranqDartClip';
 		failedpickupunloadmag(DG_CurrAmmo,WhichMag);
 	}
-	override double WeaponBulk() { return 5; }
+	override double gunMass() {return 10 + weaponstatus[DG_CurrAmmo];}
+	override double WeaponBulk() { return 10; }
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 	override string,double getpickupsprite()
@@ -156,6 +162,7 @@ class SS1DartGun : SS1Weapon {
 		Tag "SV-23 Dartgun";
 		Inventory.PickupMessage "SV-23 Dartgun. Good for fleshy targets";
 		Obituary "%k wouldn't stop needling %o.";
+		SS1Weapon.currAmmo 15;
 		
 	}
 	states
@@ -272,7 +279,16 @@ class SS1DartGun : SS1Weapon {
 	override void initializewepstats(bool idfa){
 		weaponstatus[DG_Unloaded] = 0;
 		weaponStatus[DG_CurrAmmoType] = 0;
-		weaponStatus[DG_CurrAmmo] = 15;
+		switch(user_ammo){
+			case -1:
+				weaponstatus[DG_CurrAmmo]=0;
+				break;
+			case 0:
+				weaponstatus[DG_CurrAmmo]=15;
+				break;
+			default:
+				weaponstatus[DG_CurrAmmo]=user_ammo;
+		}
 	}
 	override void loadoutconfigure(string input){
 			int loadedAmmo=getloadoutvar(input,"tranq",1);
@@ -281,8 +297,7 @@ class SS1DartGun : SS1Weapon {
 			} else {
 				weaponStatus[dg_currAmmoType] = 0;
 			}
-	}
-			
+	}		
 }
 
 enum DartGunProperties

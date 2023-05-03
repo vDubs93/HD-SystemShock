@@ -1,9 +1,41 @@
+#include "GLDEFS.textures"
+#include "GLDEFS.sprites"
+
 HardwareShader PostProcess scene
 {
 	Name "Berserk"
 	Shader "shaders/Berserk.fp" 330
 	Uniform float timer
 }
+
+HardwareShader PostProcess scene
+{
+	Name "poisoned"
+	Shader "shaders/poisoned" 330
+	Uniform float timer
+}
+
+HardwareShader PostProcess scene
+{
+	Name "Blindness"
+	Shader "shaders/Blindness.fp" 330
+	Uniform int multiplier
+}
+
+HardwareShader Texture CYCLTEST
+{
+	Shader shaders/ColorCycle
+	Speed 1
+	uniform float time
+	Texture pal1 "shaders/cycle1.bmp"
+	Texture pal2 "shaders/cycle2.png"
+	Texture pal3 "shaders/cycle3.png"
+	Texture pal4 "shaders/cycle4.png"
+	Texture pal5 "shaders/cycle5.png"
+	Texture pal6 "shaders/cycle6.png"
+}
+
+
 
 Skybox SATURN fliptop
 {

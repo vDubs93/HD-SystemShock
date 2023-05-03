@@ -2,22 +2,41 @@ class SS1junk : HDPickup
 {
 	Default
 	{
+		//$Category "System Shock/Junk"
 		radius 2;
 		height 2;
 		hdpickup.bulk 3;
-		scale 0.8;
+		scale 0.24;
 		-hdpickup.DropTranslation;
 	}
 }
 
-class Wrapper :SS1Junk {
+class Skull : SS1Junk {
 	Default
 	{
-		//$Category "System Shock/Junk"
+		//$Title "Skull"
+		//$Sprite "SKULB0"
+		Inventory.pickupMessage "Picked up a human skull.  Why?";
+		Inventory.icon "SKULB0";
+		hdpickup.bulk 8;
+		radius 4;
+		height 4;
+	}
+	states
+	{
+		spawn:
+			SKUL A -1;
+			stop;
+	}
+}
+
+class Wrapper : SS1Junk {
+	Default
+	{
 		//$Title "Empty Wrapper"
-		//$Sprite "WRAPA0"
+		//$Sprite "WRAPB0"
 		Inventory.pickupMessage "Picked up an empty wrapper.";
-		inventory.icon "WRAPA0";
+		inventory.icon "WRAPB0";
 	}
 	states
 	{
@@ -29,11 +48,10 @@ class Wrapper :SS1Junk {
 class bevContainer :SS1Junk {
 	Default
 	{
-		//$Category "System Shock/Junk"
 		//$Title "Empty Can"
-		//$Sprite "BEVCA0"
+		//$Sprite "BEVCB0"
 		Inventory.pickupMessage "Picked up an empty beverage container.";
-		inventory.icon "BEVCA0";
+		inventory.icon "BEVCB0";
 	}
 	states
 	{
@@ -54,11 +72,10 @@ class GlassWare : RandomSpawner
 class beaker :SS1Junk {
 	Default
 	{
-		//$Category "System Shock/Junk"
 		//$Title "Beaker"
 		//$Sprite "BEAKA0"
 		Inventory.pickupMessage "Picked up a glass beaker.";
-		Inventory.Icon "BEAKA0";
+		Inventory.Icon "BEAKB0";
 	}
 	states
 	{
@@ -74,11 +91,11 @@ class beaker :SS1Junk {
 class flask : beaker {
 	default
 	{
-		//$Category "System Shock/Junk"
 		//$Title "Flask"
 		//$Sprite "FLSKA0"
 		Inventory.pickupMessage "Picked up a glass flask.";
-		inventory.icon "FLSKA0";
+		inventory.icon "FLSKB0";
+		scale 0.24;
 	}
 	states
 	{
@@ -91,11 +108,10 @@ class flask : beaker {
 class vial : beaker {
 	default
 	{
-		//$Category "System Shock/Junk"
 		//$Title "Vial"
 		//$Sprite "VIALA0"
 		Inventory.pickupMessage "Picked up a glass vial.";
-		inventory.icon "VIALA0";
+		inventory.icon "VIALB0";
 	}
 	states
 	{

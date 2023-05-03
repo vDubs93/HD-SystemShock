@@ -2,6 +2,9 @@
  *        Weapons         *
  **************************/
 
+//Gas Grenade
+gasgrenade/hiss				GAS
+
 //Pipe
 pipe/swing 					SWING
 pipe/wallhit 				WALLHIT
@@ -34,13 +37,16 @@ Magnum/fire					MGNMFIRE
 //Universal weapon sounds
 weapon/FullCharge 			STUNFULL
 weapons/magout 				MAGHNDLE
+weapons/rifleclick			DRYFIRE
+weapons/rifleload			MAGHNDLE
 weapon/dryfire 				DryFire
 weapon/toggle 				TOGGLE
 weapon/overheat 			STEAMVNT
 weapon/error 				WEPERROR
 
 //items
-battery/charge 				BATTAPPLY
+battery/charge 				BATTAPLY
+patch/apply					PTCHAPLY
 
 /**************************
  *        Enemies         *
@@ -74,12 +80,16 @@ env/forcebridge 			FRCEBRDG
 env/ElevatorMusic 			ELVATREQ
 env/puzzleSolved 			PUZZSOLV
 env/puzzleButton 			PUZZBUTN
+env/RespawnActive			RESPACTV
+env/RespawnInactive			RESPDEAC
 plat/ss1move 				PLATMOVE
+env/ScreenBreak				SCRENBRK
+env/CPUNodeBreak			CPUEXPLD
 
 $random env/ladder { Ladder1 Ladder2 Ladder3}
-Ladder1 LADDER1
-Ladder2 LADDER2
-Ladder3 LADDER3
+Ladder1 					LADDER1
+Ladder2 					LADDER2
+Ladder3 					LADDER3
 
 /**************************
  *         Doors          *

@@ -15,6 +15,18 @@ class SS1GrenadeThrower : HDGrenadeThrower
 		hdgrenadethrower.wiretype "Tripwire";
 		inventory.icon "FRGRA0";
 	}
+	
+	override string gethelptext(){
+		if(weaponstatus[0]&FRAGF_SPOONOFF)return
+		WEPHELP_FIRE.."  Wind up, release to throw\n(\cxSTOP READING AND DO THIS"..WEPHELP_RGCOL..")";
+		String helpString = WEPHELP_FIRE.."  Pull pin/wind up (release to throw)\n";
+		if (grenadeType == 1)
+			helpString = helpString..WEPHELP_ALTFIRE.."  Pull pin, again to drop spoon\n";
+		helpString = helpString..WEPHELP_RELOAD.."  Abort/Replace pin\n"
+		..WEPHELP_ZOOM.."  Switch grenade type";
+		return helpString;
+	}
+	
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
 			if (grenadeType == 1){
@@ -49,7 +61,6 @@ class SS1GrenadeThrower : HDGrenadeThrower
 			cooldown--;
 		
 	}
-	
 	void changeGrenadeType()
 	{
 		
@@ -61,11 +72,13 @@ class SS1GrenadeThrower : HDGrenadeThrower
 					grenadeammoType = "SS1GasGrenadeAmmo";
 					grenadeType = 2;
 					throwtype = "SS1GasGrenade";
+					A_SetHelpText();
 					break;
 				case 2:
 					grenadeammoType = "SS1FragGrenadeAmmo";
 					grenadeType = 1;
 					throwtype = "SS1FragGrenade";
+					A_SetHelpText();
 					break;
 			}
 		}
@@ -144,12 +157,14 @@ class SS1GrenadeThrower : HDGrenadeThrower
 		loop;
 
 	altfire:
+		TNT1 A 0 A_JumpIf(invoker.grenadeType==2,"nope");
 		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&FRAGF_SPOONOFF,"nope");
 		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&FRAGF_PINOUT,"startcooking");
 		TNT1 A 0 A_JumpIf(NoGrenades(),"selectinstant");
 		TNT1 A 0 A_Refire();
 		goto ready;
 	althold:
+		TNT1 A 0 A_JumpIf(invoker.grenadeType==2,"nope");
 		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&FRAGF_SPOONOFF,"nope");
 		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&FRAGF_PINOUT,"nope");
 		TNT1 A 0 A_JumpIf(NoGrenades(),"selectinstant");
@@ -273,6 +288,19 @@ class SS1GasGrenade : HDFragGrenade
 	spawn:
 		GSTH ABCDEFGH 2;
 		loop;
+	death:
+		TNT1 A 10{
+			bmissile=false;
+			let gr=HDFragGrenadeRoller(spawn(rollertype,self.pos,ALLOW_REPLACE));
+			if(!gr)return;
+			gr.target=self.target;gr.master=self.master;
+			gr.fuze=self.fuze;
+			gr.vel=self.keeprolling;
+			gr.keeprolling=self.keeprolling;
+			gr.A_StartSound("misc/fragknock",CHAN_BODY);
+			gr.A_StartSound("gasgrenade/hiss",0);
+			HDMobAI.Frighten(gr,512);
+		}stop;
 	}
 }
 
@@ -285,22 +313,25 @@ class SS1FragGrenadeRoller:HDFragGrenadeRoller
 			FRGR A 0 nodelay{
 				HDMobAI.Frighten(self,512);
 			}
+			goto spawn2;
 	}
 }
 
 class SS1GasGrenadeRoller:HDFragGrenadeRoller
 {
 	override void tick(){
+		console.printf(""..fuze);
 		if(isfrozen())return;
 		else if(bnointeraction){
 			NextTic();
 			return;
 		}else{
-			//fuze++;
-			//if(fuze>=140 && !bnointeraction){
-			setstatelabel("destroy");
-			NextTic();
-			return;
+			fuze++;
+			if(fuze>=280 && !bnointeraction) {
+				setstatelabel("destroy");
+				NextTic();
+				return;
+			} else HDActor.tick();
 		}
 	}
 	states
@@ -315,12 +346,29 @@ class SS1GasGrenadeRoller:HDFragGrenadeRoller
 				else if(floorz>=pos.z)A_StartSound("misc/fragroll");
 				keeprolling=vel;
 				if(abs(vel.x)<0.4 && abs(vel.y)<0.4) setstatelabel("death");
+				A_SpawnItemEx("GasGrenadeCloud",0,0,0,frandom(-1,1),frandom(-1,1),frandom(0.01,0.5));
 			}
+			loop;
+		bounce:
+		---- A 0{
+			bmissile=false;
+			vel*=0.3;
+			A_SpawnItemEx("GasGrenadeCloud",0,0,0,frandom(-1,1),frandom(-1,1),frandom(0.01,0.5));
+		}goto spawn2;
+		death:
+		---- A 2{
+			if(abs(vel.z-keeprolling.z)>3){
+				A_StartSound("misc/fragknock",CHAN_BODY);
+				keeprolling=vel;
+			}
+			A_SpawnItemEx("GasGrenadeCloud",0,0,0,frandom(-1,1),frandom(-1,1),frandom(0.01,0.5));
+			if(abs(vel.x)>0.4 || abs(vel.y)>0.4) setstatelabel("spawn");
+		}wait;
 		destroy:
 			#### # 1 {
 				
 				bsolid=false;bpushable=false;bmissile=false;bnointeraction=true;bshootable=false;}
-			#### ######################################################################################## 1 {A_SpawnItemEx("GasGrenadeCloud",0,0,0,frandom(-1,1),frandom(-1,1),frandom(0.01,0.5));			}
+			
 			stop;
 	}
 }
@@ -349,6 +397,7 @@ class GasGrenadeCloud : SS1SlowProjectile
 	action void A_GasDamage(){
 		invoker.doDamage();
 	}
+	override void explodeslowmissile(){}
 	void doDamage(){
 		if (alpha <= 0)
 			setStateLabel("Death");
@@ -404,11 +453,12 @@ class GasGrenadeCloud : SS1SlowProjectile
 	}
 	states{
 		spawn:
-			GCLD A 1 A_StartSound("weapon/overheat",CHAN_AUTO);
+			GCLD A 1;
 		doDamage:
 			GCLD A 1 A_GasDamage();
 			loop;
 		death:
+			TNT1 A 0;
 			stop;
 	}
 }
@@ -444,7 +494,7 @@ class SS1FragGrenadeAmmo:HDAmmo{
 		inventory.pickupmessage "Picked up a fragmentation hand grenade.";
 		inventory.pickupsound "weapons/pocket";
 		tag "fragmentation grenades";
-		hdpickup.refid HDLD_GREFRAG;
+		hdpickup.refid "grf";
 		hdpickup.bulk ENC_FRAG;
 	}
 	states{

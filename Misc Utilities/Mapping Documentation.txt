@@ -1,0 +1,132 @@
+                                                                                                                        
+   &@@@   @@@ @@@   @/@@   @@*@@@@(*@@@@&@ @&/   @@@      .@@@  @@@  @@,   @@@    *@@@@  @%@ .@@#@
+  @@@@@#@ @@@ @@@  @@@@@% @@@@@@@(*@@@@@@@ @@@   @@@    ,@@@@@@ @@@  @@@ @@@@@@@ &@@@@@@ &@@ %@@@ 
+  @@@ @@@ @@@ @@@ @@@  &@@   @@   *@@/     @@@   @@@    @@@ &@@ @@@  @@@ @@@ @@@ @@@ @@@ @@& @%@@ 
+  @@@     @%@ @@@ @@@        @%   /@@/     @@&@ @@@&    @@@     @@@  @@@ @@@ @@% @@@     @%@ @@@* 
+  @@@     @@@ @@@ @@@        &@   /@@*     @@@@ @@@@    @%@     @@@  @@@ @@@ @@@ @@@     @@@ @@&  
+  @@@     @@@ @@@ @@&        @@   /#@/     @@@@ @@&@    %@@     @@@  @&@ @@@ &@@ @@@     *@@&@@@  
+  @@@@@@@ @@@@@@@ @@@@@@@    @@   /@@@@@@@ @@@@@@@@@    @@@@@@\ @@@@@@@@ @@@ @@& #@@     @@@@@@   
+   @@@@@@  @@@@@   @@(@@&@   @@   /@@@@@@@ @@@@@@@@@      @(@@@ @@@@@@@& @@@ %#@ @@@     *#@ @@@, 
+      @@@   @@@        @@@   @@   /@@/     @@@#@&@@@        #@@ @@&  @@@ @@@ @@@ @@@     @@@ (@@, 
+      @@@   @@@        @@&   @@   /@@/     @@@@@%@@@        #(@ @@@  #@@ @@@ @@@ @@@     @@@ (@@* 
+   @@ @@@   @@&        @@#   @@   /@@/     @@@ @ @@&        #@( @&@  @@@ @@@ @@@ @@@     @@& (@@  
+  @@@ @@@   @@@   @@@  @@@   @@   /@@/     @&@ @ @@@    @@@ #@@ @@@  @@@ @@@ @@@ @@@ @@@ @@@ *@@, 
+  @@@@@@@   @@@   &@@@@@@#   @@   *@%@@&@@ @@@   @@@    @@@@&@@ @@@  @@@ @&@@@/@ @&@@@@% @@@ *@@, 
+   @@@@@    @@@    @@@@@     @.   *@@@&@@@ @@@   @@@     *@@@/  @@&  @@@  &@@@@   #@@@@  @@@ ,%@, 
+
+								Hideous Destructor Edition
+
+Thank you for downloading this total conversion!
+
+==========================================================
+][ Map Object Usage (Ultimate Doom Builder recommended) ][
+==========================================================
+
+---------
+| Doors |
+---------
+
+Place the door thing you want to use on the linedef you want to act as a door.  Tag the linedef and the door thing with the same tag.  Voila!  You have a working door.
+
+Properties
+----------
+
+Clearance: Defines what keycard is needed to open the door.
+
+-------------------------------------
+| Value  | 		Access Level 		|
+-------------------------------------
+| 0	 	 | No card					|
+| 1	 	 | Standard					|
+| 2	 	 | Group-1					|
+| 4	 	 | Medical					|
+| 8		 | Personal (Nathan D'Arcy)	|
+| 16	 | Science					|
+| 32	 | Group-4					|
+| 64	 | Engineering				|
+| 128	 | Group-3					|
+| 256	 | Administrative			|
+| 512	 | Group-B					|
+| 1024	 | Command					|
+| 2048	 | Personal (Edward Diego)	|
+-------------------------------------
+
+Wait: Time in seconds door remains open after use
+
+Locked:	Whether door is locked by some other means (switch, puzzle, etc, broken door)
+
+Locked Message: The message to display when the player tries to open this door (only if the door is locked)
+
+NB: Force doors don't work this way.  They must be connected to a lever.
+
+
+-------------------
+| Moving Surfaces |
+-------------------
+
+++++++++++++++++
+Floor Controller
+++++++++++++++++
+Place the Floor Controller Thing in the sector you want to move (this isn't strictly necessary, but the sound will play from the Thing's location
+so it might be weird if you don't).  Give the sector and the Thing the same tag.
+
+Properties
+----------
+
+Top Height: The maximum height (actual vertical map position) this floor controller should move its floor to.
+Bottom Height: The minimum height to move the floor to.
+Direction:	Which direction the lift should be moving.  0 for up, 1 for down, -1 for not moving.
+Touch Activate: Whether the lift should activate when the player touches it, or if it is controlled by something else (switch, lever, puzzle)
+Only Once: Whether the lift should be able to be activated over and over, or if it should only move once and then lock in place forever.
+
+++++++++++++++++++
+Ceiling Controller
+++++++++++++++++++
+
+Works similar to the Floor controller.
+
+Properties
+----------
+
+Same as their respective properties in the floor controller.
+
+--------------------
+| Lootable objects |
+--------------------
+
+Lootable objects all work the same.  The only difference is sprite-based objects like the thermos dont scale.
+
+Properties
+----------
+Scale: multiplies the object's size.
+Loot#: Integer value representing an item in the loot table (Will document separately once it's complete).
+
+
+----------
+| Ladder |
+----------
+
+Place the ladder where you'd like the player to climb.  Against a wall is recommended, but I guess you don't HAVE to.
+
+Properties
+----------
+
+Height: The Z-coordinate for the top of the ladder.  The bottom of the ladder is at whatever height the thing is placed.
+Radius: Defines how close the player has to be to latch on.  Note that because I'm an idiot this should be half of the desired distance.
+width: Defines the width of the climbable area.  Good for making entire walls climbable.
+
+----------------------
+| Switches and Levers|
+----------------------
+
+Switches and Levers all act the same.  Place it wherever you want it to be and give it the same tag as the actor/sector you want it to toggle. If targeting a door, 
+using the switch will unlock the door if it was locked.
+
+Properties
+----------
+Switch Type: Only has two possible values so far, 0 and 1.  Switch type 0 will toggle other total conversion actors (floor and ceiling controllers, doors, etc.)
+			 Switch type 1 is used for sector light values.
+			 
+The following arguments are only used for sector light toggling at the moment.
+Arg1: Sets the brightness of the toggled sector light when off.
+Arg2: Sets the brightness of the toggled sector light when on.

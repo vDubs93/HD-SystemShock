@@ -1,4 +1,4 @@
-//Highest used: 19565
+//Highest used: 19598
 doomednums
 {
 	//Weapons
@@ -8,7 +8,14 @@ doomednums
 	19548 = ML41MiniPistol
 	19551 = SS1SparqBeam
 	19553 = SS1MagPulse
+	19571 = Magnum2100
 	
+	//Screens
+	19569 = SS1Logo1
+	19570 = SS1DiegoScreen1
+	19584 = SS1StationScreen1
+	19585 = SS1StationScreen2
+	19590 = SS1StaticScreen
 	
 	//Wall Switches
 	19455 = switch1
@@ -16,13 +23,17 @@ doomednums
 	19457 = lever1
 	19485 = bigbutton
 	19490 = button2
+	19589 = lever2
 	
 	//Puzzles
 	19540 = numPadPuzzle
+	19598 = AccessPanelPuzzle
 	
 	//Interactables
 	19483 = gravlift
 	19500 = SS1ladder
+	19566 = SS1RespawnPoint
+	19588 = ControlPedestal
 	
 	//Ammo
 	19459 = NeedleDartClip
@@ -31,10 +42,13 @@ doomednums
 	19565 = SS1GasGrenadeAmmo
 	19549 = MPStandardMag
 	19550 = MPTeflonMag
+	19572 = MGSlugMag
+	19573 = MGHollowMag
 	
 	//Monsters
 	19460 = ServBot
 	19552 = HumanoidMutant
+	19594 = RepairBot
 	
 	//World Objects
 	19463 = rechargeStation
@@ -54,6 +68,8 @@ doomednums
 	19503 = beaker
 	19504 = wrapper
 	19505 = bevcontainer
+	19592 = skull
+	19595 = SS1Medikit
 	
 	//Access Cards
 	19507 = standardCard
@@ -91,6 +107,7 @@ doomednums
 	19543 = SS1ElevatorDoor02
 	19544 = SS1ElevatorDoor03
 	19545 = SS1ElevatorDoor04
+	19591 = SS1FloorDoor1
 	
 	//Foliage
 	19491 = Tree1
@@ -109,14 +126,20 @@ doomednums
 	19537 = Barrel2
 	19538 = Barrel3
 	19539 = cart
+	19593 = lumpofclothes
+	19596 = slab
+	19597 = xray
 	
 	//Patches
 	19498 = SS1medpatch
 	19499 = SS1BerzerkPatch
+	19567 = SS1SightPatch
+	19568 = SS1StaminaPatch
 	
 	//Lootable Objects
 	19461 = crate
 	19506 = Thermos
+	19586 = Briefcase
 	
 	//cyberspace
 	19508 = CyberSpaceExit
@@ -145,4 +168,14 @@ doomednums
 	19528 = SS1WallIcon16
 	19529 = SS1WallIcon17
 	19530 = SS1WallIcon18
+	19574 = SS1Graffiti01
+	19575 = SS1Graffiti02
+	19576 = SS1Graffiti03
+	19578 = SS1Graffiti04
+	19579 = SS1Graffiti05
+	19580 = SS1Graffiti06
+	19581 = SS1Graffiti07
+	19582 = SS1Graffiti08
+	19583 = SS1Graffiti09
+	19587 = SS1HealingSuiteSign
 }

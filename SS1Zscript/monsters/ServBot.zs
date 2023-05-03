@@ -11,7 +11,7 @@ class ServBot : SS1MobBase
 		-NOBLOCKMAP
 		//$Category "System Shock/Monsters"
 		//$Title "Serv-Bot"
-		//$Sprite "SERVA0"
+		//$Sprite "SERVA1"
 		scale 0.7;
 		HitObituary "%o got served.";
 		speed 4;
@@ -62,24 +62,24 @@ class ServBot : SS1MobBase
 			#### A 0 A_Jump(64,"spawn");
 			loop;
 		see:
-			SERV ABCD random(3,4) A_HDChase();
+			SERM ABCD 5 A_HDChase();
 			loop;
 			
 		missile:
 			goto see;
 		melee:
-			SERA AB 4;
-			#### C 3 A_FaceTarget();
-			#### D 10 A_StartSound("servbot/hit");
-			#### E 5 A_MeleeAttack(height*0.6, target);
-			#### F 10;
+			SERA A 5 A_FaceTarget();
+			SERA B 4 A_StartSound("servbot/hit");
+			#### C 10 A_MeleeAttack(height*0.6, target);
+			#### D 4;
+			#### E 25 A_MeleeAttack(height*0.6, target);
 			Goto see;
 		pain:
 			SERP A 5;
 			SERP B 5;
 			goto see;
 		death:
-			SERD A 5A_StartSound("servbot/die");
+			SERD A 5 A_StartSound("servbot/die");
 			SERD BCD 5;
 			SERD E 1 A_NoBlocking();
 		dead:
@@ -142,6 +142,10 @@ class ServBot : SS1MobBase
 
 		addz(hitheight);
 		mtrace.hitactor.damagemobj(self,self,int(dmg),"bashing",flags:dmfl);
+		if (!mtrace.hitActor.bDONTTHRUST){
+			vector3 kickdir=(mtrace.hitActor.pos-self.pos).unit();
+			mtrace.hitActor.vel=kickdir*5*self.mass/max(self.mass*0.3,mtrace.hitActor.mass);
+		}
 		addz(-hitheight);
 	}
 }

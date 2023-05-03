@@ -5,9 +5,10 @@ class SixDoFPlayer : PlayerPawn
 
     Default
     {
-        Speed 320 / ticRate;
+        Speed 120 / ticRate;
         SixDoFPlayer.UpMove 1.0;
-
+		radius 4;
+		height 4;
         +NoGravity
         +RollSprite
     }
@@ -16,8 +17,8 @@ class SixDoFPlayer : PlayerPawn
     const maxYaw = 65536.0;
     const maxPitch = 65536.0;
     const maxRoll = 65536.0;
-    const maxForwardMove = 12800;
-    const maxSideMove = 10240;
+    const maxForwardMove = 7680;
+    const maxSideMove = 7680;
     const maxUpMove = 768;
     const stopFlying = -32768;
 

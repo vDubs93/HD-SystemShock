@@ -120,7 +120,6 @@ class LootMenu : HDWeapon
 	{
 		super.tick();
 		if(target){
-			console.printf(lastweapon.getClassName());
 			float distance =  owner.Distance3D(target);
 			if (self.outlineX < 0 && distance < 64 && !deselect)
 				self.outlineX += 8;
@@ -149,10 +148,19 @@ class LootMenu : HDWeapon
 		}
 	}
 	action void A_RemoveItem() {
-		if (invoker.loot[invoker.index][0]){
+		if (invoker.loot[invoker.index][0] != 'None'){
+			//A_Log(invoker.loot[invoker.index][0]);
+			
 			let hpl = Hacker(self);
-			hpl.A_GiveInventory(invoker.loot[invoker.index][0], 1);
+			HDPickup item;
+			class<actor> iii;
+			iii=invoker.loot[invoker.index][0];
+			item=HDPickup(spawn(iii,invoker.target.pos, ALLOW_REPLACE));
+			
+			GrabThinker.grab(hpl, item);
+			
 			SS1MobBase(invoker.target).removefromloot(invoker.index);
+
 			invoker.loot[invoker.index][0] = "none";
 			invoker.loot[invoker.index][1] = "none";
 		}
