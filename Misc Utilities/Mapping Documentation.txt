@@ -23,7 +23,7 @@ Thank you for downloading this total conversion!
 ==========================================================
 
 ---------
-| Doors |
+I Doors I
 ---------
 
 Place the door thing you want to use on the linedef you want to act as a door.  Tag the linedef and the door thing with the same tag.  Voila!  You have a working door.
@@ -61,7 +61,7 @@ NB: Force doors don't work this way.  They must be connected to some sort of swi
 
 
 -------------------
-| Moving Surfaces |
+I Moving Surfaces I
 -------------------
 
 ++++++++++++++++
@@ -91,7 +91,7 @@ Properties
 Same as their respective properties in the floor controller.
 
 --------------------
-| Lootable objects |
+I Lootable objects I
 --------------------
 
 Lootable objects all work the same.  The only difference is sprite-based objects like the thermos dont scale.
@@ -122,10 +122,10 @@ Loot#: Integer value representing an item in the loot table.
 ---------------------------
 
 ----------
-| Ladder |
+I Ladder I
 ----------
 
-Place the ladder where you'd like the player to climb.  Against a wall is recommended, but I guess you don't HAVE to.
+Place the ladder where you'd like the player to climb.  Against a wall is recommended, but I guess you don't HAVE to. (though it'd be kind of non-sensical not to.
 
 Properties
 ----------
@@ -134,9 +134,9 @@ Height: The Z-coordinate for the top of the ladder.  The bottom of the ladder is
 Radius: Defines how close the player has to be to latch on.  Note that because I'm an idiot this should be half of the desired distance.
 width: Defines the width of the climbable area.  Good for making entire walls climbable, which is in fact a thing in some levels.
 
-----------------------
-| Switches and Levers|
-----------------------
+-----------------------
+I Switches and Levers I
+-----------------------
 
 Switches and Levers all act the same.  Place it wherever you want it to be and give it the same tag as the actor/sector you want it to toggle. If targeting a door, 
 using the switch will unlock the door if it was locked.
