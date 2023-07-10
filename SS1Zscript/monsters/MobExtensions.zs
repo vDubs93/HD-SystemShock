@@ -1,4 +1,4 @@
-const numLoots = 16;
+const numLoots = 17;
 const SS1CONST_NOLOOT = 0;
 const SS1CONST_NBATTERY = 1;
 const SS1CONST_WRAPPER = 2;
@@ -14,6 +14,9 @@ const SS1CONST_TRANQCLIP = 11;
 const SS1CONST_STDACCESS = 12;
 const SS1CONST_SKULL = 13;
 const SS1CONST_GROUP1 = 14;
+const SS1CONST_MLSTD = 15;
+const SS1CONST_MLTEF = 16;
+
 
 class SS1MobBase : HDMobBase
 {	
@@ -44,6 +47,8 @@ class SS1MobBase : HDMobBase
 		lootTable[SS1CONST_STDACCESS][0] = "standardCard";			lootTable[SS1CONST_STDACCESS][1] = "STAIA0";
 		lootTable[SS1CONST_SKULL][0] = "Skull";						lootTable[SS1CONST_SKULL][1] = "SKULB0";
 		lootTable[SS1CONST_GROUP1][0] = "Group1Card";				lootTable[SS1CONST_GROUP1][1] = "STAIB0";
+		lootTable[SS1CONST_MLSTD][0] = "MPStandardMag";				lootTable[SS1CONST_MLSTD][1] = "MPSMA0";
+		lootTable[SS1CONST_MLTEF][0] = "MPTeflonMag";				lootTable[SS1CONST_MLTEF][1] = "MPTMA0";
 	}
 	int actualLoot[4];
 	virtual void initializeLoot(array<int> lootList, int numItems)
@@ -65,6 +70,11 @@ class SS1MobBase : HDMobBase
 		self.actualLoot[index] = 0;
 	}
 }
+class SS1Monster : SS1MobBase {}
+class SS1Cyborg : SS1Monster {}
+class SS1Robot : SS1Monster {}
+class SS1Mutant : SS1Monster {}
+
 
 
 class TranqHandler : Inventory {
@@ -100,6 +110,7 @@ class StunHandler : TranqHandler
 	{
 		counter = 0;
 		tranqTimer = random(70,105) + 35 * stunLevel;
-		console.printf("Stunned for "..(tranqTimer/35.).." seconds");
+		if (hd_debug)
+			console.printf("Stunned for "..(tranqTimer/35.).." seconds");
 	}
 }

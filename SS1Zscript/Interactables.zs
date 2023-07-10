@@ -91,10 +91,12 @@ class ElevatorMusic : Actor
 	
 	override void tick()
 	{	
-		if (!CheckProximity("Hacker", 32)){
+		PlayerInfo p = players[consoleplayer];
+		if (!CheckProximity(p.mo.GetClassName(), 32)){
 			if (musicOff == true){
 				SetMusicVolume(1.0);
 				A_SoundVolume(20, 0);
+				p.mo.A_SoundVolume(45, snd_musicvolume);
 				musicOff = false;
 			}
 		} else{
@@ -878,7 +880,7 @@ class gravlift : SS1SwitchableActor
 			if (!mo || Distance2D(mo) > 32)
 				continue;
 			else {
-				if (!(mo is "gravlift")){
+				if (!(mo is "gravlift" || mo is "SS1SwitchableActor")){
 					if (dir == 0) {
 						if (mo is 'Hacker'){
 							mo.player.onground = true;

@@ -1,5 +1,6 @@
-class HumanoidMutant : SS1MobBase
+class HumanoidMutant : SS1Mutant
 {
+	bool user_cantmove;
 	override void postbeginplay() {
 		super.postbeginplay();
 		array<int> lootList = {7, 7, 7, 3, 3, 8, 0, 0, 0, 0, 0, 0, 0};
@@ -42,6 +43,7 @@ class HumanoidMutant : SS1MobBase
 			loop;
 		spawnswitch:
 			#### A 0 A_JumpIf(bambush,"spawnstill");
+			#### A 0 A_JumpIf(user_cantmove, "spawnstill");
 			goto spawnwander;
 		spawnstill:
 			MTID A 0 A_Look();

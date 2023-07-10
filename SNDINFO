@@ -1,3 +1,19 @@
+MedIntro					MedIntro
+MedW1						MedW1
+MedW2						MedW2
+MedW3						MedW3
+MedW4						MedW4
+MedC1						MedC1
+MedC2						MedC2
+MedC3						MedC3
+MedC4						MedC4
+MedPerilToCombat			MedC5
+MedC6						MedC6
+MedC7						MedC7
+MedTrns						MedTrns
+MedLowHelth					MedLoHP
+MedCyborg					MedCybrg
+
 /**************************
  *        Weapons         *
  **************************/
@@ -18,6 +34,7 @@ dartgun/wallhit 			DARTWALL
 //DH-07 Stungun
 stungun/fire 				STUNGUN
 stungun/zap 				STUNZAP
+stungun/fullcharge			STUNFULL
 
 //ML-41 Minipistol
 minipistol/fire 			MINIPISF
@@ -66,6 +83,8 @@ $random servbot/act { servact1 servact2 servact3 servact4 servact5 servact6 serv
 humanoidMutant/hit			MUTATTAK
 humanoidMutant/die			MUTDEAD
 humanoidMutant/see			MUTSEE
+
+CyborgDrone/act				CYBDIDLE
 
 /**************************
  *  Interactable Objects  *

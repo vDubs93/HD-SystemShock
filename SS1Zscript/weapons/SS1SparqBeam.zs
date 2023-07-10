@@ -21,15 +21,15 @@ Class SS1SparqBeam : SS1Handgun
 		HDWeapon.barrelSize 10, 0.2, 0.2;
 		scale 0.2;
 		tag "SparqBeam sidearm";
-		Inventory.pickupMessage "SparqBeam sidearm. Now with 3 power settings";
+		Inventory.pickupMessage "SparqBeam sidearm. More pew-pew for your pew-pew.";
 		SS1Weapon.penetration 25;
 		SS1Weapon.offenseValue 3;
 	}
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
-		..WEPHELP_RELOAD.."  Increase Power Level\n"
-		..WEPHELP_UNLOAD.."  Decrease Power Level\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Power level\n"
+		..WEPHELP_RELOAD.."  Toggle Overcharge\n"
 		..WEPHELP_MAGMANAGER
 		;
 	}
@@ -118,7 +118,8 @@ Class SS1SparqBeam : SS1Handgun
 		if (pActor) {
 			if (pActor is 'SS1MobBase'){
 				if (invoker.penetration <  SS1MobBase(pActor).armorValue) {
-					console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
+					if (hd_debug)
+						console.printf("Damage reduced by "..SS1MobBase(pActor).armorValue - invoker.penetration);
 					dmg -= (SS1MobBase(pActor).armorValue - invoker.penetration);
 				}
 				if (hd_debug)
@@ -225,8 +226,10 @@ Class SS1SparqBeam : SS1Handgun
 						int powerdraw = 2 + slope * (invoker.weaponstatus[SB_POWERLEVEL]/100);
 						Hacker(invoker.owner).energyUse += powerdraw;
 						Hacker(invoker.owner).internalCharge -= powerdraw;
-						console.printf(string.format("%d", invoker.weaponstatus[SB_POWERLEVEL]/100.));
-						console.printf(string.format("%f", powerdraw));
+						if (hd_debug) {
+							console.printf(string.format("%d", invoker.weaponstatus[SB_POWERLEVEL]/100.));
+							console.printf(string.format("%f", powerdraw));
+						}
 						invoker.weaponStatus[SB_OVERLOAD] = 0;
 						invoker.weaponStatus[SB_HeatLevel] += 20;
 						A_SparqAttack((invoker.weaponstatus[SB_POWERLEVEL]/100)+6, "04aebb", 10);

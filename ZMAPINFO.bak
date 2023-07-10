@@ -1,0 +1,38 @@
+include "SS1DoomEdNums.txt"
+gameinfo {
+	AddEventHandlers="SS1EventHandler", "LootHandlerGiver", "RollHandler", "berserkHandler"
+	PlayerClasses="Hacker"
+	statusbarClass="HackerStatusBar"
+}
+
+defaultmap {
+	Sky1 = "SATURN", .1
+	music = "sshock01"
+}
+
+DamageType Magnetic
+{
+	Factor = 0
+	ReplaceFactor
+}
+
+cluster 1
+{
+	hub
+}
+map map01 "Medical"
+{
+	Cluster = 1
+}
+map map02 "Research"
+{
+	Cluster = 1
+	music = "sshock02"
+}
+
+map map20 "CyberSpace"
+{
+	Cluster = 1
+	usePlayerStartZ = 1
+	music = "sshock10"
+}

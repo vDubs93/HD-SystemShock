@@ -126,6 +126,7 @@ class SS1Door : SS1SwitchableActor
 		+WALLSPRITE;
 		+SHOOTABLE;
 		+NOBLOOD;
+		+NOGRAVITY;
 		height 64;
 		radius 16;
 		health -1;

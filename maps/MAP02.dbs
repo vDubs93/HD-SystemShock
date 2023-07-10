@@ -1,0 +1,109 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_SysDoomShockUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	RESEARCH
+	{
+		defaultwalltexture = "SSTX_074";
+		overridemiddletexture = false;
+		defaultceiltexture = "SSTX_054";
+		overrideceiltexture = false;
+		custombrightness = 196;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+		}
+		viewpositiony = -992.6546f;
+		viewpositionx = -288.2956f;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		customceilheight = 128;
+		
+		plugins
+		{
+			
+			threedfloormode
+			{
+				
+				controlsectorarea
+				{
+					usecustomtagrange = false;
+					outerleft = -2560;
+					outerright = -2048;
+					outertop = 1728;
+					outerbottom = 1216;
+				}
+			}
+		}
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0;
+			backscaley = 100;
+			gridrotate = 0;
+			backscalex = 100;
+			gridoriginx = 0;
+			gridsize = 64;
+			background = "";
+			backoffsety = 0;
+		}
+		viewscale = 1.248294f;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		defaulttoptexture = "SSTX_074";
+		overridebottomtexture = false;
+		defaultbottomtexture = "SSTX_074";
+		defaultfloortexture = "SSTX_216";
+		overrideceilheight = false;
+		overridebrightness = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		overridefloorheight = false;
+		overridetoptexture = false;
+		uselongtexturenames = false;
+		overridefloortexture = false;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				user_managed_3d_floor = 3;
+			}
+			
+			thing
+			{
+				user_height = 1;
+			}
+		}
+	}
+}

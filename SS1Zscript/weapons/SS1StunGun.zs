@@ -44,15 +44,21 @@ Class SS1StunGun : SS1Weapon
 		
 		if (hpl && hpl.internalCharge > 0 && !invoker.weaponStatus[SG_OverHeat]) {
 			
-			A_StartSound("stungun/fire", CHAN_AUTO, CHANF_OVERLAP);
+
 			if (invoker.weaponStatus[SG_PowerLevel] == 3) {
 				if (hpl.InternalCharge >= 8) {
 					A_StartSound("stungun/FullCharge", CHAN_AUTO, CHANF_OVERLAP);
 				} else if (hpl.InternalCharge >= 2) invoker.weaponStatus[SG_powerlevel] = 2;
 			}
-			if (invoker.weaponStatus[SG_PowerLevel] == 2) {
+			if (invoker.weaponStatus[SG_PowerLevel] >= 2) {
 				if (hpl.InternalCharge < 2) 
 					invoker.weaponStatus[SG_powerlevel] = 1;
+				else {
+					A_StartSound("stungun/fire", CHAN_AUTO, CHANF_OVERLAP, 1.0, ATTN_NORM, 0.8);
+				}
+			}
+			if (invoker.weaponStatus[SG_PowerLevel] >= 1) {
+					A_StartSound("stungun/fire", CHAN_AUTO, CHANF_OVERLAP);
 			}
 			int level = invoker.weaponstatus[SG_powerlevel];
 			hpl.internalCharge -= level < 3 ? level : 8;

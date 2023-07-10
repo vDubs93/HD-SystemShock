@@ -1,5 +1,5 @@
 
-class ServBot : SS1MobBase
+class ServBot : SS1Robot
 {
 	override void postbeginplay() {
 		super.postbeginplay();

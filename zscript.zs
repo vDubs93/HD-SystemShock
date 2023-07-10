@@ -41,6 +41,7 @@ version "4.5"
 #include "SS1ZScript/Monsters/ServBot.zs"
 #include "SS1ZScript/Monsters/Mutant.zs"
 #include "SS1ZScript/Monsters/RepairBot.zs"
+#include "SS1ZScript/Monsters/CyborgDrone.zs"
 
 //Decorations
 #include "SS1ZScript/Decoration/Foliage.zs"

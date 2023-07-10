@@ -49,6 +49,7 @@ doomednums
 	19460 = ServBot
 	19552 = HumanoidMutant
 	19594 = RepairBot
+	19599 = CyborgDrone
 	
 	//World Objects
 	19463 = rechargeStation

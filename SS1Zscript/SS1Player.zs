@@ -28,6 +28,7 @@ class Hacker : HDPlayerPawn
 	int staminaPatch;
 	bool looting;
 	int accesses;
+	int defenseValue;
 	property Accesses: accesses;
 	weapon prevWeapon;
 	int doPuzzle;
@@ -44,6 +45,7 @@ class Hacker : HDPlayerPawn
 		DamageFactor "Gas", 0.001;
 		DamageFactor "Magnetic", 0;
 		health 83;
+
 		//gravity 0.4;
 	}
 	
@@ -60,6 +62,7 @@ class Hacker : HDPlayerPawn
 	{
 		super.postbeginplay();
 		accesses = 0;
+		defenseValue = 4;
 		energyUse = 0;
 		health = 83;
 		HDWeaponSelector.Select(self,"EmptyHands");
@@ -361,7 +364,7 @@ class Hacker : HDPlayerPawn
 
 
 		//HDBulletActor has its separate wound handling
-		if(inflictor is "HDBulletActor")towound=0;
+		if(inflictor is "SS1Bullet")towound=0;
 
 
 

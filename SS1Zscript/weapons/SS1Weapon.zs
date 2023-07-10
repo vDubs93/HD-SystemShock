@@ -31,17 +31,16 @@ class SS1Weapon : HDWeapon
 		else                    retval = 12;   
 		return retval;
 	}
-	Void SetWeaponFrame (int InputFrame, int InputLayer = PSP_WEAPON)
-   {
-      If(Owner.Player) // Check if weapon has an owner and it's a player
-      {
-         // Do retrieve user's (weapon) sprite from specified layer. Default one is PSP_WEAPON, which is used by the engine for the actual weapons
-         // "PSprites" are HUD states, and they are stored into players
-   
-         PSprite WFrame = Owner.Player.GetPSprite(InputLayer);   
-         if(WFrame && WFrame.CurState != null) {WFrame.frame = InputFrame;}   // Set input frame to the desired layer
-      }
-   }
+	Void SetWeaponFrame (int InputFrame, int InputLayer = PSP_WEAPON){
+		If(Owner.Player) // Check if weapon has an owner and it's a player
+		{
+			 // Do retrieve user's (weapon) sprite from specified layer. Default one is PSP_WEAPON, which is used by the engine for the actual weapons
+			 // "PSprites" are HUD states, and they are stored into players
+
+			 PSprite WFrame = Owner.Player.GetPSprite(InputLayer);   
+			 if(WFrame && WFrame.CurState != null) {WFrame.frame = InputFrame;}   // Set input frame to the desired layer
+		}
+	}
 }
 
 class SS1Handgun:SS1Weapon{
@@ -229,5 +228,58 @@ class SS1Bullet:HDBulletActor{
 		else if (rtotal <= 98)  retval =  8;      // 93-98
 		else                    retval = 12;   
 		return retval;
+	}
+}
+
+
+class SS1MonsterBullet:HDBulletActor{
+	int penetration;
+	property penetration: penetration;
+	int offenseValue;
+	property offenseValue: offenseValue;
+	float dmg;
+	property dmg: dmg;
+	
+	override void onHitActor(actor hitactor,vector3 hitpos,vector3 vu,int flags){
+		if(!hitactor.bshootable)return;
+		if(max(abs(pos.x),abs(pos.y))>=32768){destroy();return;}
+		actor a=spawn("IdleDummy",pos,ALLOW_REPLACE);
+		a.stamina=10;
+		explodemissile(blockingline,null);
+		FLineTraceData data;
+		LineTrace(angle, 56, pitch, TRF_NOSKY, offsetz: height, data: data);
+		Actor pActor = data.hitactor;
+	
+		if (hitActor){ // && !(pActor is 'SS1MobBase')) {
+			if (hd_debug)
+				console.printf("initial damage is "..dmg..".");
+			dmg *= frandom(0.9, 1.1);	
+			if (hd_debug)
+				console.printf("final damage is "..dmg..".");
+			Hacker(hitActor).damageMobj(self,SS1MobBase(self),int(dmg),"Bullet");
+			class<actor> hitblood;
+			bool noblood = hitActor.bNoBlood;
+			if(noblood)hitblood="FragPuff";else hitblood=hitActor.bloodtype;
+			double ath=angleto(pActor);
+			double zdif=pos.z-pActor.pos.z;
+			bool gbg;actor blood;
+			[gbg,blood]=pActor.A_SpawnItemEx(
+				hitblood,
+				-hitActor.radius,0,zdif,
+				angle:ath,
+					flags:SXF_ABSOLUTEANGLE|SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETTARGET
+			);
+			if(blood)blood.vel=-3 * vel+(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.2,0.4)
+			);
+		setstatelabel("disappear");
+		}
+		return;
+	}
+	
+	states
+	{
+		Spawn:
+			CDRW A 1;
+			loop;
 	}
 }

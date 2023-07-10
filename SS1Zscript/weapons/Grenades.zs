@@ -320,7 +320,8 @@ class SS1FragGrenadeRoller:HDFragGrenadeRoller
 class SS1GasGrenadeRoller:HDFragGrenadeRoller
 {
 	override void tick(){
-		console.printf(""..fuze);
+		if (hd_debug)
+			console.printf(""..fuze);
 		if(isfrozen())return;
 		else if(bnointeraction){
 			NextTic();
