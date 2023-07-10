@@ -23,7 +23,7 @@ Thank you for downloading this total conversion!
 ==========================================================
 
 ---------
-| Doors |
+I Doors I
 ---------
 
 Place the door thing you want to use on the linedef you want to act as a door.  Tag the linedef and the door thing with the same tag.  Voila!  You have a working door.
@@ -33,23 +33,23 @@ Properties
 
 Clearance: Defines what keycard is needed to open the door.
 
--------------------------------------
-| Value  | 		Access Level 		|
--------------------------------------
-| 0	 	 | No card					|
-| 1	 	 | Standard					|
-| 2	 	 | Group-1					|
-| 4	 	 | Medical					|
-| 8		 | Personal (Nathan D'Arcy)	|
-| 16	 | Science					|
-| 32	 | Group-4					|
-| 64	 | Engineering				|
-| 128	 | Group-3					|
-| 256	 | Administrative			|
-| 512	 | Group-B					|
-| 1024	 | Command					|
-| 2048	 | Personal (Edward Diego)	|
--------------------------------------
+--------------------------------------
+| Value  | 		Access Level |
+--------------------------------------  
+| 0	 | No card		     |
+| 1	 | Standard		     |
+| 2	 | Group-1		     |
+| 4	 | Medical		     |
+| 8	 | Personal (Nathan D'Arcy)  |
+| 16	 | Science	             |
+| 32	 | Group-4		     |
+| 64	 | Engineering		     |
+| 128	 | Group-3		     |
+| 256	 | Administrative	     |
+| 512	 | Group-B		     |
+| 1024	 | Command		     |
+| 2048	 | Personal (Edward Diego)   |
+--------------------------------------
 
 Wait: Time in seconds door remains open after use
 
@@ -57,11 +57,11 @@ Locked:	Whether door is locked by some other means (switch, puzzle, etc, broken 
 
 Locked Message: The message to display when the player tries to open this door (only if the door is locked)
 
-NB: Force doors don't work this way.  They must be connected to a lever.
+NB: Force doors don't work this way.  They must be connected to some sort of switch.
 
 
 -------------------
-| Moving Surfaces |
+I Moving Surfaces I
 -------------------
 
 ++++++++++++++++
@@ -83,7 +83,7 @@ Only Once: Whether the lift should be able to be activated over and over, or if 
 Ceiling Controller
 ++++++++++++++++++
 
-Works similar to the Floor controller.
+Works like the Floor controller, except moves the ceiling.
 
 Properties
 ----------
@@ -91,40 +91,59 @@ Properties
 Same as their respective properties in the floor controller.
 
 --------------------
-| Lootable objects |
+I Lootable objects I
 --------------------
 
 Lootable objects all work the same.  The only difference is sprite-based objects like the thermos dont scale.
 
 Properties
 ----------
+
 Scale: multiplies the object's size.
-Loot#: Integer value representing an item in the loot table (Will document separately once it's complete).
-
+Loot#: Integer value representing an item in the loot table.
+---------------------------
+| Value |       Loot      |
+---------------------------
+| 0     | None            |
+| 1     | Normal Battery  |
+| 2     | Wrapper         |
+| 3     | Empty can       |
+| 4     | Beaker          |
+| 5     | Flask           |
+| 6     | Vial            |
+| 7     | Medipatch       |
+| 8     | Berzerk Patch   |
+| 9     | Frag Grenade    |
+| 10    | Needle Dart Mag |
+| 11    | Tranq Dart Mag  |
+| 12    | STD Access card |
+| 13    | Skull           |
+| 14    | GROUP-1 card    |
+---------------------------
 
 ----------
-| Ladder |
+I Ladder I
 ----------
 
-Place the ladder where you'd like the player to climb.  Against a wall is recommended, but I guess you don't HAVE to.
+Place the ladder where you'd like the player to climb.  Against a wall is recommended, but I guess you don't HAVE to. (though it'd be kind of non-sensical not to.
 
 Properties
 ----------
 
 Height: The Z-coordinate for the top of the ladder.  The bottom of the ladder is at whatever height the thing is placed.
 Radius: Defines how close the player has to be to latch on.  Note that because I'm an idiot this should be half of the desired distance.
-width: Defines the width of the climbable area.  Good for making entire walls climbable.
+width: Defines the width of the climbable area.  Good for making entire walls climbable, which is in fact a thing in some levels.
 
-----------------------
-| Switches and Levers|
-----------------------
+-----------------------
+I Switches and Levers I
+-----------------------
 
 Switches and Levers all act the same.  Place it wherever you want it to be and give it the same tag as the actor/sector you want it to toggle. If targeting a door, 
 using the switch will unlock the door if it was locked.
 
 Properties
 ----------
-Switch Type: Only has two possible values so far, 0 and 1.  Switch type 0 will toggle other total conversion actors (floor and ceiling controllers, doors, etc.)
+Switch Type: Only has two possible values so far, 0 and 1.  Switch type 0 will toggle other TC-specific actors (floor and ceiling controllers, doors, etc.)
 			 Switch type 1 is used for sector light values.
 			 
 The following arguments are only used for sector light toggling at the moment.
