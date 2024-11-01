@@ -41,7 +41,7 @@ class Hacker : HDPlayerPawn
 	default
 	{
 		Hacker.InternalCharge 85.0;
-		MaxSlopeSteepness 45000. / 65536.;
+		MaxSlopeSteepness 35900. / 65536.;
 		DamageFactor "Gas", 0.001;
 		DamageFactor "Magnetic", 0;
 		health 83;
@@ -727,18 +727,16 @@ class Hacker : HDPlayerPawn
 	
 	void runPuzzle()
 	{
-		if (!currPuzz) {
+		/*if (!currPuzz) {
 			CheckProximity("SS1Puzzle",48,1, CPXF_ANCESTOR | CPXF_CHECKSIGHT | CPXF_SETTARGET);
-			cursorX = 0;
-			cursorY = 0;
-
-		} else {
+		} else {*/
+		if (currPuzz){
 			if (doPuzzle){
 				player.cheats |= CF_FROZEN;
 			}
 			int input = getPlayerInput(INPUT_BUTTONS);
 			int oldInput = getPlayerInput(INPUT_OLDBUTTONS);
-			if (doPuzzle == 1) {
+			if (doPuzzle == 1) {	//Keypad
 				int numArray[4][3];
 				numArray[0][0] = 0;
 				numArray[0][0] = 0;
@@ -772,7 +770,7 @@ class Hacker : HDPlayerPawn
 					}
 				}
 			}
-			if (doPuzzle == 2) {
+			if (doPuzzle == 2) { //Access Panel
 				
 				if ((input & BT_FORWARD) && !(oldInput & BT_FORWARD) && cursorY > 0){
 					cursorY --;
@@ -785,6 +783,29 @@ class Hacker : HDPlayerPawn
 				}
 				if ((input & BT_USE) && !(oldInput & BT_USE)) {
 					AccessPanelPuzzle(currPuzz).flipSpace(cursorX, cursorY);
+				}
+			}
+			if (doPuzzle == 3){
+				console.printf("Index is "..elevatorPanel(currPuzz).index.." and target floor is "..elevatorPanel(currPuzz).floors[elevatorPanel(currPuzz).index]);
+				if ((input & BT_FORWARD) && !(oldInput & BT_FORWARD) && cursorY < 3
+					&& elevatorPanel(currPuzz).floors[elevatorPanel(currPuzz).index - 1] != "NONE"){
+					cursorY ++;
+					elevatorPanel(currPuzz).index--;
+				} else if ((input & BT_BACK) && !(oldInput & BT_BACK) && cursorY > 0
+					&& elevatorPanel(currPuzz).floors[elevatorPanel(currPuzz).index + 1] != "NONE") {
+					cursorY --;
+					elevatorPanel(currPuzz).index++;
+				} else if ((input & BT_MOVELEFT) && !(oldInput & BT_MOVELEFT) && cursorX > 0
+					&& elevatorPanel(currPuzz).floors[elevatorPanel(currPuzz).index - 4] != "NONE"){
+					cursorX --;
+					elevatorPanel(currPuzz).index -= 4;
+				} else if ((input & BT_MOVERIGHT) && !(oldInput & BT_MOVERIGHT) && cursorX < 1
+					&& elevatorPanel(currPuzz).floors[elevatorPanel(currPuzz).index + 4] != "NONE") {
+					cursorX ++;
+					elevatorPanel(currPuzz).index += 4;
+				}
+				if ((input & BT_USE) && !(oldInput & BT_USE)) {
+					elevatorPanel(currPuzz).doChangeFloor(self);
 				}
 			}
 			if ((input & BT_ZOOM)) {

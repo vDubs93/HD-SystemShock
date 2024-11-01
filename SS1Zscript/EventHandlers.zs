@@ -35,6 +35,10 @@ class SS1EventHandler : EventHandler
 		}
 	}
 }
+class disableMapTweaks : StaticEventHandler
+{
+
+}
 const STATE_WALKING = 0;
 const STATE_PERIL = 1;
 const STATE_COMBAT = 2;
@@ -68,7 +72,7 @@ class MusicHandler : Eventhandler
 			case 'test':
 			case 'Map01':
 				prefix = "Med";
-				segLength = 385;
+				segLength = 388;
 				break;
 			default:
 				prefix = "";
@@ -94,10 +98,10 @@ class MusicHandler : Eventhandler
 		robot[2] = prefix.."Robot1";
 		robot[3] = prefix.."Robot1";
 
-		mutant[0] = prefix.."Mutant1";
-		mutant[1] = prefix.."Mutant2";
-		mutant[2] = prefix.."Mutant3";
-		mutant[3] = prefix.."Mutant4";
+		mutant[0] = prefix.."Mut1";
+		mutant[1] = prefix.."Mut2";
+		mutant[2] = prefix.."Mut3";
+		mutant[3] = prefix.."Mut3";
 		segmentIndex = -1;
 		counter = 0;
 		p = players[consoleplayer];
@@ -107,20 +111,15 @@ class MusicHandler : Eventhandler
 	}
 	
 	/* Basic Idea:
-	 * Play music bits as sound effects
-	 * every [segment length] segments, check what's going on around the player
+	 * Play music segments as sound effects
+	 * every [segment length] tics, check what's going on around the player
 	 * change track accordingly
+	 * Check for enemies, play layers on top of music
 	 * Music is on channel 45, layers will be on 46 and up
 	 */
 	override void WorldTick()
 	{
 		if(p.mo is 'hacker') {
-			
-			if (segmentIndex == -1){
-				p.mo.A_StartSound(intro, 45, 0, snd_musicvolume, 0);
-				transitionToCombat = false;
-				segmentIndex ++;
-			}
 			ThinkerIterator finder = ThinkerIterator.Create("Actor");
 			Actor mo;
 			int chasers = 0;
@@ -129,31 +128,40 @@ class MusicHandler : Eventhandler
 			bool nearMutant = false;
 			bool nearMonster = false;
 			while ((mo = Actor(Finder.Next()))) {
-				if (mo is 'SS1Monster'){
-					if (mo.target is 'hacker' && mo.health > 0 && mo.CheckSight(mo.target))
+				if (mo is 'SS1Monster' && mo.health > 0){
+					if (mo.target is 'hacker' && mo.CheckSight(mo.target))
 						chasers++;
 					if (mo.Distance3D(p.mo) <=256){
 						if (mo is 'SS1Robot')
 							nearRobot = true;
-						if (mo is 'SS1Cyborg')
+						else if (mo is 'SS1Cyborg')
 							nearCyborg = true;
-						if (mo is 'SS1Mutant')
+						else if (mo is 'SS1Mutant')
 							nearMutant = true;
 					}
 				}
 			}
-			//console.printf(""..prevPlayerHealth - p.mo.health.." "..transitionToCombat);
+			//console.printf(""..prevPlayerHealth - p.mo.health.." "..transitionToCombat);			
+			if (segmentIndex == -1){
+				p.mo.A_StartSound(intro, 45, 0, snd_musicvolume, 0);
+				transitionToCombat = false;
+				segmentIndex ++;
+			}
 			if (counter == segLength){
 				if (chasers == 0)
 					playerState = STATE_WALKING;
 				if (nearRobot)
 					p.mo.A_StartSound(robot[segmentIndex], 47, 0, snd_musicvolume, 0);
 				if (nearCyborg) {
-					if (random(0, 4) > 1)
+					console.printf("Near Cyborg");
+					if (random(0, 4) > 0)
 						p.mo.A_StartSound(cyborg, 48, 0, snd_musicvolume, 0);
 				}
-				if (nearMutant)
+				if (nearMutant){
 					p.mo.A_StartSound(mutant[segmentIndex], 49, 0, snd_musicvolume, 0);
+					console.printf("Near Mutant");
+					console.printf("%s",mutant[segmentIndex]);
+				}
 				if (p.mo.health < 25)
 					p.mo.A_StartSound(lowHealth, 46, 0, snd_musicvolume, 0);
 				if (playerState == STATE_WALKING) {

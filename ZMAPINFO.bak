@@ -1,13 +1,15 @@
 include "SS1DoomEdNums.txt"
 gameinfo {
-	AddEventHandlers="SS1EventHandler", "LootHandlerGiver", "RollHandler", "berserkHandler"
+	AddEventHandlers="SS1EventHandler", "LootHandlerGiver", "RollHandler", "berserkHandler", "MusicHandler"
 	PlayerClasses="Hacker"
 	statusbarClass="HackerStatusBar"
+	pixelratio = 1.0
 }
+
+
 
 defaultmap {
 	Sky1 = "SATURN", .1
-	music = "sshock01"
 }
 
 DamageType Magnetic
@@ -20,6 +22,14 @@ cluster 1
 {
 	hub
 }
+map test "Realspace Test map"
+{
+	cluster = 1
+}
+map map00 "Reactor"
+{
+	Cluster = 1
+}
 map map01 "Medical"
 {
 	Cluster = 1
@@ -29,6 +39,13 @@ map map02 "Research"
 	Cluster = 1
 	music = "sshock02"
 }
+
+map map03 "Maintenance"
+{
+	Cluster = 1
+	music = "sshock00"
+}
+
 
 map map20 "CyberSpace"
 {

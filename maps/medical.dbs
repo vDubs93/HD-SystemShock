@@ -1,0 +1,136 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_DoomUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MEDICAL
+	{
+		defaultwalltexture = "SSTX_101";
+		overridemiddletexture = false;
+		defaultceiltexture = "SSTX_198";
+		overrideceiltexture = false;
+		custombrightness = 196;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+			
+			resource0
+			{
+				type = 2;
+				location = "D:\\Doom\\Hideous Destructor\\hd-4.7.0a.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+			}
+			
+			resource1
+			{
+				type = 1;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HD_SystemShock";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+			}
+		}
+		viewpositiony = -416.7414f;
+		viewpositionx = -98.46071f;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		customceilheight = 128;
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0;
+			backscaley = 100;
+			gridrotate = 0;
+			backscalex = 100;
+			gridoriginx = 0;
+			gridsize = 32;
+			background = "";
+			backoffsety = 0;
+		}
+		viewscale = 1.279152f;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		defaulttoptexture = "SSTX_101";
+		overridebottomtexture = false;
+		
+		fieldtypes
+		{
+			
+			thing
+			{
+				user_wait = 0;
+				user_width = 0;
+				user_scale = 1;
+				user_loot1 = 0;
+				user_locked = 3;
+				user_touchactivate = 3;
+				user_bottomheight = 0;
+				user_iconindex = 0;
+				user_switchtype = 0;
+				user_arg1 = 0;
+				user_clearance = 0;
+				user_loot3 = 2;
+				user_loot4 = 2;
+				user_topheight = 0;
+				user_dir = 0;
+				user_loot2 = 0;
+				user_radius = 0;
+				user_lockedmessage = 2;
+				user_arg4 = 0;
+				user_arg3 = 0;
+				user_arg2 = 0;
+				user_direction = 0;
+				user_onlyonce = 3;
+				user_startstate = 2;
+				user_ammo = 0;
+				user_height = 0;
+				user_code = 2;
+			}
+			
+			sector
+			{
+				user_managed_3d_floor = 3;
+			}
+		}
+		defaultbottomtexture = "SSTX_101";
+		defaultfloortexture = "SSTX_036";
+		overrideceilheight = false;
+		overridebrightness = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		overridefloorheight = false;
+		overridetoptexture = false;
+		uselongtexturenames = false;
+		overridefloortexture = false;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+	}
+}

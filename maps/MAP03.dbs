@@ -1,0 +1,113 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_DoomUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAP03
+	{
+		
+		resources
+		{
+			
+			resource0
+			{
+				type = 2;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HideousDestructor-v4.7.1c.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+			
+			resource1
+			{
+				type = 1;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HD_SystemShock";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+		}
+		defaultfloortexture = "SSTX_111";
+		defaultceiltexture = "SSTX_111";
+		defaulttoptexture = "SSTX_112";
+		defaultwalltexture = "SSTX_112";
+		defaultbottomtexture = "SSTX_112";
+		custombrightness = 196;
+		customfloorheight = 0;
+		customceilheight = 128;
+		overridefloortexture = false;
+		overrideceiltexture = false;
+		overridetoptexture = false;
+		overridemiddletexture = false;
+		overridebottomtexture = false;
+		overridefloorheight = false;
+		overrideceilheight = false;
+		overridebrightness = false;
+		uselongtexturenames = false;
+		viewpositionx = -28.70747f;
+		viewpositiony = 1150.192f;
+		viewscale = 0.5894586f;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		grid
+		{
+			background = "";
+			backsource = 0;
+			backoffsetx = 0;
+			backoffsety = 0;
+			backscalex = 100;
+			backscaley = 100;
+			gridsize = 4;
+			gridrotate = 0;
+			gridoriginx = 0;
+			gridoriginy = 0;
+		}
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		fieldtypes
+		{
+			
+			thing
+			{
+				user_starton = 3;
+				user_height = 0;
+				user_direction = 0;
+				user_wait = 0;
+				user_elev_number = 0;
+				user_radius = 0;
+				user_width = 0;
+			}
+		}
+	}
+}

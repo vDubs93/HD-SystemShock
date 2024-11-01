@@ -1,4 +1,4 @@
-//Highest used: 19598
+//Highest used: 19600
 doomednums
 {
 	//Weapons
@@ -24,6 +24,7 @@ doomednums
 	19485 = bigbutton
 	19490 = button2
 	19589 = lever2
+	19600 = elevatorPanel
 	
 	//Puzzles
 	19540 = numPadPuzzle

@@ -13,6 +13,9 @@ MedC7						MedC7
 MedTrns						MedTrns
 MedLowHelth					MedLoHP
 MedCyborg					MedCybrg
+MedMut1						MedMut1
+MedMut2						MedMut2
+MedMut3						MedMut3
 
 /**************************
  *        Weapons         *

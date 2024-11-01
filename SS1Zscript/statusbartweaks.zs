@@ -52,6 +52,12 @@ class HackerStatusBar : HDStatusBar
 					DrawImage(imgToDraw, ((x *19) + 12, -(((4-y) * 17.25) + 12)), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255, (320, 200));
 				}
 			}
+		} else if (puzzleType == 3) {
+			let hpl = Hacker(cplayer.mo);
+			elevatorPanel panel = elevatorPanel(hpl.currPuzz);
+			DrawImage("EPAD"..(panel.user_elev_number+1), (6, -6), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255, (320, 200), (0.5, 0.5));
+			DrawImage(gametic % 10 < 5 ? "NPCursor" : "", ((hpl.cursorX * 16) + 6, -((hpl.cursorY * 16) + 6)), DI_SCREEN_LEFT_BOTTOM | DI_ITEM_LEFT_BOTTOM, 255,
+			(320, 200),(0.5, 0.5));
 		}
 	}
 	

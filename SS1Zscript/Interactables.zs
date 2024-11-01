@@ -109,6 +109,173 @@ class ElevatorMusic : Actor
 	}
 }
 
+class elevatorPanel : SS1Puzzle
+{
+	String [8] floors;
+	int [8]spawnLocations;
+	int index;
+	int	user_elev_number;
+	bool user_isExecElevator;
+	bool stopDoubleInput;
+	default
+	{
+		//$Category "System Shock/Interactables/Puzzles
+		//$Title "AccessPanel"
+		//$sprite "EVEXA0"
+		+WALLSPRITE;
+		height 16;
+		radius 8;
+	}
+	override void postBeginPlay()
+	{
+		stopDoubleInput = True;
+		switch(user_elev_number)
+		{
+			
+			case 0:
+				floors[0] = "MAP01";
+				floors[1] = "MAP02";
+				floors[2] = "BROKEN";
+				floors[3] = "BROKEN";
+				floors[4] = "BROKEN";
+				floors[5] = "BROKEN";
+				floors[6] = "NONE";
+				floors[7] = "NONE";
+				spawnLocations[0] =  1;
+				spawnLocations[1] =  0;
+				spawnLocations[2] = -1;
+				spawnLocations[3] = -1;
+				spawnLocations[4] = -1;
+				spawnLocations[5] = -1;
+				spawnLocations[6] = -1;
+				spawnLocations[7] = -1;
+				break;
+			case 1:
+				floors[0] = "MAP00";
+				floors[1] = "BROKEN";
+				floors[2] = "MAP02";
+				floors[3] = "MAP03";
+				floors[4] = "BROKEN";
+				floors[5] = "BROKEN";
+				floors[6] = "BROKEN";
+				floors[7] = "NONE";
+				spawnLocations[0] =  1;
+				spawnLocations[1] = -1;
+				spawnLocations[2] =  1;
+				spawnLocations[3] =  0;
+				spawnLocations[4] = -1;
+				spawnLocations[5] = -1;
+				spawnLocations[6] = -1;
+				spawnLocations[7] = -1;
+				break;
+			case 2:
+				floors[0] = "MAP03";
+				floors[1] = "MAP04";
+				floors[2] = "MAP05";
+				floors[3] = "NONE";
+				floors[4] = "NONE";
+				floors[5] = "NONE";
+				floors[6] = "NONE";
+				floors[7] = "NONE";
+				spawnLocations[0] =  1;
+				spawnLocations[1] =  0;
+				spawnLocations[2] =  0;
+				spawnLocations[3] = -1;
+				spawnLocations[4] = -1;
+				spawnLocations[5] = -1;
+				spawnLocations[6] = -1;
+				spawnLocations[7] = -1;
+				break;
+			case 3:
+				floors[0] = "BROKEN";
+				floors[1] = "BROKEN";
+				floors[2] = "MAP03";
+				floors[3] = "MAP06";
+				floors[4] = "BROKEN";
+				floors[5] = "BROKEN";
+				floors[6] = "NONE";
+				floors[7] = "NONE";
+				spawnLocations[0] = -1;
+				spawnLocations[1] = -1;
+				spawnLocations[2] =  2;
+				spawnLocations[3] =  0;
+				spawnLocations[4] = -1;
+				spawnLocations[5] = -1;
+				spawnLocations[6] = -1;
+				spawnLocations[7] = -1;
+				break;
+			default:
+				floors[0] = "MAP01";
+				floors[1] = "MAP01";
+				floors[2] = "MAP01";
+				floors[3] = "MAP01";
+				floors[4] = "MAP01";
+				floors[5] = "MAP01";
+				floors[6] = "MAP01";
+				floors[7] = "MAP01";
+				spawnLocations[0] = 0;
+				spawnLocations[1] = 0;
+				spawnLocations[2] = 0;
+				spawnLocations[3] = 0;
+				spawnLocations[4] = 0;
+				spawnLocations[5] = 0;
+				spawnLocations[6] = 0;
+				spawnLocations[7] = 0;
+		}
+	}
+	override bool used(Actor user)
+	{
+		if (checkProximity("Hacker", 32)) {
+			solver = Hacker(user);
+			if (!solver.doPuzzle) {
+				solver.doPuzzle = 3;
+				solver.cursorX = 0;
+				solver.cursorY = 3;
+				index = 0;
+				solver.currPuzz = self;
+				return true;
+			}
+		}
+		return false;
+	}
+	states{
+		spawn:
+			TNT1 AA 0 {
+				if (user_isExecElevator)
+					setStateLabel("exec");
+				else
+					setStateLabel("standard");
+			}
+		exec:
+			EVEX A 1;
+			wait;
+		standard:
+			EVST A 1;
+			wait;
+	}
+	void doChangeFloor(Hacker user){
+		console.printf(""..stopDoubleInput);
+		if (stopDoubleInput == false){
+			if (floors[index] != level.MapName && floors[index] != "NONE" && floors[index] != "BROKEN"){
+				if (index < 0)
+					index = 0;
+				user.doPuzzle = 0;
+				user.currPuzz = NULL;
+				stopDoubleInput = True;
+				level.ChangeLevel(floors[index], spawnLocations[index], CHANGELEVEL_KEEPFACING | CHANGELEVEL_NOINTERMISSION | CHANGELEVEL_PRERAISEWEAPON);
+				return;
+			} else {
+				if (floors[index] == "BROKEN")
+					user.A_Print("Shaft Damage -- Unable to go there.");
+				else
+					user.A_Print("The elevator is already there.");
+			}
+		}
+		stopDoubleInput = false;
+	}
+}
+	
+
 
 class SS1SwitchableActor : Actor
 {
@@ -147,6 +314,7 @@ class SS1Switch : SS1SwitchableActor
 	int user_arg2;
 	int user_arg3;
 	int user_arg4;
+	bool user_startOn;
 	override bool used(Actor user)
 	{
 		if (distance3d(user) > Hacker(user).userange)
@@ -178,8 +346,10 @@ class SS1Switch : SS1SwitchableActor
 						} else ForceDoor(pActor).switchState();
 					} else if (pActor is 'SS1Elevator'){
 						SS1Elevator elevator = SS1Elevator(pActor);
+						console.printf("toggling elevator");
 						if (elevator.isLocked()){
 							elevator.unlock();
+							console.printf("unlocked elevator");
 						} else
 							elevator.switchstate();
 					} else if (!(pActor is 'SS1Switch')){
@@ -205,6 +375,13 @@ class SS1Switch : SS1SwitchableActor
 		
 		return true;
 	}
+	override void postBeginPlay()
+	{
+		if (user_startOn) {
+			setStateLabel("on");
+			active = True;
+		}
+	}
 	override void switchState()
 	{
 		active = !active;
@@ -228,7 +405,14 @@ class SS1Switch : SS1SwitchableActor
 	States
 	{
 		Spawn:
-			TNT1 AA 1 { active = false; }
+			TNT1 AA 1 { active = user_startOn; 
+					if (active) {
+						setStateLabel("on");
+						return;
+					}
+					setStateLabel("off");
+					return;
+				}
 			goto Off;	
 		Off:
 			#### A -1;
@@ -311,6 +495,8 @@ class AccessPanelPuzzle : SS1Puzzle {
 			solver = Hacker(user);
 			if (!solver.doPuzzle) {
 				solver.doPuzzle = 2;
+				solver.cursorX = 0;
+				solver.cursorY = 0;
 				solver.currPuzz = self;
 				return true;
 			}
@@ -426,6 +612,8 @@ class numPadPuzzle : SS1Puzzle
 			if (!solver.doPuzzle) {
 				solver.doPuzzle = 1;
 				solver.currPuzz = self;
+				solver.cursorX = 0;
+				solver.cursorY = 0;
 				input = "";
 				return true;
 			}
@@ -536,6 +724,8 @@ class SS1Elevator : SS1SwitchableActor
 	}
 	override void switchState()
 	{
+		if (hasUsed && user_onlyonce)
+			return;
 		hasUsed = true;
 		if(!user_locked){
 			if (user_onlyonce)

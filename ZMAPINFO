@@ -3,10 +3,14 @@ gameinfo {
 	AddEventHandlers="SS1EventHandler", "LootHandlerGiver", "RollHandler", "berserkHandler", "MusicHandler"
 	PlayerClasses="Hacker"
 	statusbarClass="HackerStatusBar"
+
 }
+
+
 
 defaultmap {
 	Sky1 = "SATURN", .1
+	pixelratio = 1.0
 }
 
 DamageType Magnetic
@@ -23,19 +27,35 @@ map test "Realspace Test map"
 {
 	cluster = 1
 }
+map map00 "Reactor"
+{
+	Cluster = 1
+	NoIntermission
+}
 map map01 "Medical"
 {
 	Cluster = 1
+	NoIntermission
 }
 map map02 "Research"
 {
 	Cluster = 1
 	music = "sshock02"
+	NoIntermission
 }
+
+map map03 "Maintenance"
+{
+	Cluster = 1
+	music = "sshock00"
+	NoIntermission
+}
+
 
 map map20 "CyberSpace"
 {
 	Cluster = 1
 	usePlayerStartZ = 1
 	music = "sshock10"
+	NoIntermission
 }

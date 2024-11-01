@@ -36,7 +36,7 @@ class SS1Door : SS1SwitchableActor
 	override bool used(Actor user)
 	{
 		super.used(user);
-		if (instatesequence(CurState,ResolveState("open")) && !dummyActivate)
+		if (instatesequence(CurState,ResolveState("open")) && !dummyActivate && user != self)
 			return false;
 		vector3 userpos = (user.pos.x, user.pos.y, user.pos.z+(user.height/2));
 		float distance = abs((userpos- pos).length());
@@ -210,6 +210,7 @@ class doorDummy : Actor
 		+NONSHOOTABLE;
 		-SOLID;
 		+WALLSPRITE;
+		+NOGRAVITY;
 	}
 	bool isLookingAt(Actor user){
 		user = Hacker(user);

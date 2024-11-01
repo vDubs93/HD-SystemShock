@@ -1,5 +1,5 @@
 type = "Doom Builder Map Settings Configuration";
-gameconfig = "GZDoom_SysDoomShockUDMF.cfg";
+gameconfig = "GZDoom_DoomUDMF.cfg";
 strictpatches = 0;
 
 maps
@@ -7,7 +7,7 @@ maps
 	
 	RESEARCH
 	{
-		defaultwalltexture = "SSTX_074";
+		defaultwalltexture = "SSTX_196";
 		overridemiddletexture = false;
 		defaultceiltexture = "SSTX_054";
 		overrideceiltexture = false;
@@ -16,9 +16,29 @@ maps
 		
 		resources
 		{
+			
+			resource0
+			{
+				type = 2;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HideousDestructor-v4.7.1c.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+			
+			resource1
+			{
+				type = 1;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HD_SystemShock";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
 		}
-		viewpositiony = -992.6546f;
-		viewpositionx = -288.2956f;
+		viewpositiony = -850.1487f;
+		viewpositionx = 113.6312f;
 		
 		testprecommand
 		{
@@ -55,11 +75,11 @@ maps
 			gridrotate = 0;
 			backscalex = 100;
 			gridoriginx = 0;
-			gridsize = 64;
+			gridsize = 1;
 			background = "";
 			backoffsety = 0;
 		}
-		viewscale = 1.248294f;
+		viewscale = 7.83284f;
 		
 		reloadresourceprecommand
 		{
@@ -67,9 +87,9 @@ maps
 			exitcodeiserror = true;
 			stderriserror = true;
 		}
-		defaulttoptexture = "SSTX_074";
+		defaulttoptexture = "SSTX_196";
 		overridebottomtexture = false;
-		defaultbottomtexture = "SSTX_074";
+		defaultbottomtexture = "SSTX_196";
 		defaultfloortexture = "SSTX_216";
 		overrideceilheight = false;
 		overridebrightness = false;
@@ -103,6 +123,15 @@ maps
 			thing
 			{
 				user_height = 1;
+				user_locked = 3;
+				user_starton = 3;
+				user_startstate = 2;
+				user_touchactivate = 3;
+				user_topheight = 0;
+				user_bottomheight = 0;
+				user_onlyonce = 3;
+				user_direction = 0;
+				user_elev_number = 0;
 			}
 		}
 	}
