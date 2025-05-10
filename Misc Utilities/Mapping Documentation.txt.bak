@@ -110,8 +110,8 @@ Loot#: Integer value representing an item in the loot table.
 | 3     | Empty can       |
 | 4     | Beaker          |
 | 5     | Flask           |
-| 7     | Medipatch       |
 | 6     | Vial            |
+| 7     | Medipatch       |
 | 8     | Berzerk Patch   |
 | 9     | Frag Grenade    |
 | 10    | Needle Dart Mag |

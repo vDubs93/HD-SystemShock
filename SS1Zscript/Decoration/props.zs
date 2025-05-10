@@ -140,3 +140,14 @@ class lumpofClothes : SS1Prop
 			wait;
 	}
 }
+
+class SS1Camera : SS1Prop
+{
+	default
+	{
+		//$Title "SHODAN camera"
+		-SOLID;
+		+NOGRAVITY;
+		scale 0.6;
+	}
+}

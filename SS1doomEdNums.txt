@@ -61,6 +61,7 @@ doomednums
 	19488 = forceBridge
 	19497 = CPUNode
 	19546 = ElevatorMusic
+	19601 = SS1Camera
 	
 	//Items
 	19464 = normalbattery

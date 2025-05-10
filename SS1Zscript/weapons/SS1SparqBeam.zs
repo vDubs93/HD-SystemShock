@@ -163,6 +163,7 @@ Class SS1SparqBeam : SS1Handgun
 			goto select0small;
 		Deselect0:
 			SPRQ A 0{
+					A_StopSound(19);
 					if (!invoker.weaponStatus[SB_OVERLOAD] < 4){
 						invoker.setWeaponFrame(0);}
 			}
@@ -170,22 +171,7 @@ Class SS1SparqBeam : SS1Handgun
 		ready:
 			SPRQ A 1 {
 				A_WeaponReady(WRF_ALL);
-				if (invoker.weaponstatus[sb_overheat] == 0) {
-					if (invoker.weaponStatus[SB_OVERLOAD]){
-						if (gametic % 4 == 0)
-							invoker.curFrame = 0;
-						else if (gametic % 3 == 0)
-							invoker.curFrame = 1;
-						else if (gametic % 2 == 0)
-							invoker.curFrame = 2;
-						else if (gametic % 1 == 0)
-							invoker.curFrame = 1;
-						invoker.setWeaponFrame(invoker.curFrame);
-					}
-				} else {
-					invoker.setWeaponFrame(2);
-					A_StopSound(19);
-				}
+				A_SetPowerFrame();
 			}
 			goto readyEnd;
 		fire:
@@ -291,6 +277,7 @@ Class SS1SparqBeam : SS1Handgun
 	}
 	action void A_PowerLevelReady(){
 		A_WeaponReady(WRF_NONE);
+		A_SetPowerFrame();
 		int iab=invoker.weaponStatus[SB_PowerLevel];
 		int cab=0;
 		int mmy=-GetMouseY(true);
@@ -306,5 +293,30 @@ Class SS1SparqBeam : SS1Handgun
 			else iab=0;
 		}*/
 		invoker.weaponStatus[SB_PowerLevel]=clamp(iab,0,3000);
+	}
+	action void A_SetPowerFrame(){
+		if (invoker.weaponstatus[sb_overheat] == 0) {
+			if (invoker.weaponStatus[SB_OVERLOAD]){
+				if (gametic % 4 == 0)
+					invoker.curFrame = 0;
+				else if (gametic % 3 == 0)
+					invoker.curFrame = 1;
+				else if (gametic % 2 == 0)
+					invoker.curFrame = 2;
+				else if (gametic % 1 == 0)
+					invoker.curFrame = 1;
+				
+			} else {
+				if (invoker.weaponStatus[SB_PowerLevel] > 2000)
+					invoker.curFrame = 2;
+				else if (invoker.weaponStatus[SB_PowerLevel] > 1000)
+					invoker.curFrame = 1;
+				else invoker.curFrame = 0;
+			}
+			invoker.setWeaponFrame(invoker.curFrame);
+		} else {
+			invoker.setWeaponFrame(2);
+			A_StopSound(19);
+		}
 	}
 }

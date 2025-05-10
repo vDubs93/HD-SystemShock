@@ -12,8 +12,9 @@ class CyberSpaceExit : Actor
 	}
 	override void tick()
 	{	
-		if (CheckProximity("CyberHacker", 32))
+		if (CheckProximity("CyberHacker", 32, 1, CPXF_SETTARGET))
 		{
+			target.bFly = false;
 			Teleport_NewMap(user_mapnum, user_playerStart, 0);
 		}
 	}

@@ -1,3 +1,11 @@
+Model SS1Camera
+{
+	Path "models/Camera"
+	model 0 "SS1Camera.obj"
+	scale 0.625 0.625 0.625
+	USEACTORPITCH
+	frameIndex BATT A 0 0
+}
 Model rechargeStation
 {
 	Path "models/rechargeStation"

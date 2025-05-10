@@ -12,6 +12,7 @@ class cyberHacker : SixDoFPlayer
 		super.travelled();
 		if (level.LevelNum < 20) {
 			Unmorph(self, 0, true);
+			
 		}
 	}
 }
@@ -72,6 +73,8 @@ class Hacker : HDPlayerPawn
 		if (level.LevelNum>=20) {
 			//Wee cyberspace! lots to do there still.
 			Morph(self, "cyberhacker", NULL,0x7FFFFFFF, 0, "", "");
+		} else {
+			
 		}
 	}
 	

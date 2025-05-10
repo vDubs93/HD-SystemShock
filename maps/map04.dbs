@@ -104,47 +104,128 @@ maps
 			}
 		}
 		
-		fieldtypes
+		scriptdocuments
 		{
 			
-			sector
+			document0
 			{
-				user_managed_3d_floor = 3;
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
 			}
 			
-			thing
+			document1
 			{
-				user_scale = 1;
-				user_loot1 = 0;
-				user_loot2 = 0;
-				user_loot3 = 2;
-				user_loot4 = 2;
-				user_switchtype = 0;
-				user_iconindex = 0;
-				user_height = 0;
-				user_radius = 0;
-				user_width = 0;
-				user_startstate = 2;
-				user_puzzle = 2;
-				user_arg1 = 0;
-				user_arg2 = 0;
-				user_arg3 = 0;
-				user_arg4 = 0;
-				user_wait = 0;
-				user_lockedmessage = 2;
-				user_clearance = 0;
-				user_locked = 3;
-				user_startframe = 0;
-				user_ammo = 0;
-				user_direction = 0;
-				user_setceiling = 3;
-				user_topheight = 0;
-				user_touchactivate = 3;
-				user_light = 3;
-				user_bottomheight = 0;
-				user_onlyonce = 3;
-				user_code = 2;
-				user_cantmove = 3;
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 720;
+				firstvisibleline = 40;
+				activetab = true;
+			}
+		}
+	}
+	
+	MAP04
+	{
+		defaultwalltexture = "SSTX_103";
+		overridemiddletexture = false;
+		defaultceiltexture = "SSTX_093";
+		overrideceiltexture = false;
+		custombrightness = 196;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+			
+			resource0
+			{
+				type = 2;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HideousDestructor-v4.7.1c.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+			
+			resource1
+			{
+				type = 1;
+				location = "D:\\Doom\\Hideous Destructor\\HD-SystemShock\\HD_SystemShock";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+		}
+		viewpositiony = 295.6386f;
+		viewpositionx = 316.577f;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		customceilheight = 128;
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0;
+			backscaley = 100;
+			gridrotate = 0;
+			backscalex = 100;
+			gridoriginx = 0;
+			gridsize = 64;
+			background = "";
+			backoffsety = 0;
+		}
+		viewscale = 0.7568889f;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		defaulttoptexture = "SSTX_103";
+		overridebottomtexture = false;
+		defaultbottomtexture = "SSTX_103";
+		defaultfloortexture = "SSTX_125";
+		overrideceilheight = false;
+		overridebrightness = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		overridefloorheight = false;
+		overridetoptexture = false;
+		uselongtexturenames = false;
+		overridefloortexture = false;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		selectiongroups
+		{
+			
+			9
+			{
+				things = "497";
 			}
 		}
 		
